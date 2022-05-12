@@ -1,0 +1,32 @@
+@import "../../../@theme/styles/themes";
+
+@include nb-install-component() {
+  .list-card {
+    nb-card-header {
+      border-bottom: none;
+    }
+
+    nb-card-body {
+      padding: 0;
+    }
+  }
+
+  .btn-plus-header {
+    height: 31px;
+  }
+
+  .btn-atras {
+    margin-bottom: 12px;
+  }
+  nb-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: nb-theme(card-header-with-select-padding-top);
+    padding-bottom: nb-theme(card-header-with-select-padding-bottom);
+  }
+
+  .padding-8 {
+    padding: 8px;
+  }
+}

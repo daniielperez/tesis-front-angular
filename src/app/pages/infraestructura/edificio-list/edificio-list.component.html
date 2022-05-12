@@ -1,0 +1,44 @@
+<nb-card
+  class="list-card"
+  size="small"
+  [nbSpinner]="loading"
+  nbSpinnerStatus="basic"
+  nbSpinnerSize="large"
+  nbSpinnerMessage="Cargando..."
+>
+  <nb-card-header>
+    <span>Edificios</span>
+    <nb-actions size="medium">
+      <nb-action class="action-icon">
+        <button
+          nbButton
+          outline
+          status="primary"
+          class="btn-plus-header"
+          (click)="onCreate()"
+        >
+          <nb-icon class="action-icon" icon="plus-outline"></nb-icon>
+        </button>
+      </nb-action>
+    </nb-actions>
+  </nb-card-header>
+  <nb-list>
+    <nb-list-item *ngFor="let edificio of edificios">
+      <!-- {{ edificio.fullName }} -->
+      <nb-user
+        [name]="edificio.nombre"
+        [title]="edificio.direccion"
+        (click)="onSelect(edificio)"
+      >
+      </nb-user>
+      <nb-actions size="small">
+        <nb-action
+          size="large"
+          icon="settings-2-outline"
+          (click)="onSelect(edificio)"
+        ></nb-action>
+        <nb-action icon="edit-outline" (click)="onEdit(edificio)"></nb-action>
+      </nb-actions>
+    </nb-list-item>
+  </nb-list>
+</nb-card>

@@ -1,0 +1,36 @@
+<div class="container row">
+  <button
+    nbButton
+    outline
+    status="basic"
+    class="btn-atras"
+    [routerLink]="['../index']"
+  >
+    <nb-icon icon="arrow-back-outline"></nb-icon>
+  </button>
+  <p class="padding-8">{{ nombreEdificio }}</p>
+</div>
+<nb-card>
+  <nb-menu tag="menu" [items]="items"> </nb-menu>
+</nb-card>
+<div class="lists row">
+  <div class="col-md-12 col-lg-12 col-xxxl-12">
+    <nb-select
+      [nbSpinner]="loading"
+      size="large"
+      filled
+      placeholder="Seleccione o cree un bloque"
+      status="primary"
+      fullWidth="true"
+    >
+      <nb-option
+        (click)="onChangeBloque(bloque)"
+        value="{{ bloque.id }}"
+        *ngFor="let bloque of bloquesListSelect"
+        >{{ bloque.name }}</nb-option
+      >
+    </nb-select>
+
+    <ngx-salon-list *ngIf="salonComponent"></ngx-salon-list>
+  </div>
+</div>

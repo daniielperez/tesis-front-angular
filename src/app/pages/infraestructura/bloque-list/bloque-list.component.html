@@ -1,0 +1,29 @@
+<div class="container row">
+  <button
+    nbButton
+    outline
+    status="basic"
+    class="btn-atras"
+    [routerLink]="['../index']"
+  >
+    <nb-icon icon="arrow-back-outline"></nb-icon>
+  </button>
+  <p class="padding-8">{{ nombreEdificio }}</p>
+</div>
+<nb-card>
+  <nb-menu tag="menu" [items]="items"> </nb-menu>
+</nb-card>
+
+<nb-card [nbSpinner]="load">
+  <nb-card-header> Bloques </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (edit)="onEdit($event)"
+      (create)="onCreate()"
+      (delete)="onDeleteConfirm($event)"
+    >
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

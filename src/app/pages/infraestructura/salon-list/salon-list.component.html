@@ -1,0 +1,62 @@
+<nb-card accent="primary" class="car-mg-tp" [nbSpinner]="loadPisos">
+  <nb-card-header *ngIf="!loadPisos">
+    <!-- <span>{{ bloqueSelect.fullName }}</span> -->
+    <span>{{ bloqueSelect?.nombre }}</span>
+    <nb-actions
+      size="medium"
+      *ngIf="!containerConfigPisos && pisosListSelect.length != 0"
+    >
+      <nb-action class="action-icon">
+        <!-- <nb-select selected="2" status="primary" size="small"> -->
+        <nb-select
+          status="primary"
+          size="small"
+          placeholder="Pisos"
+          (selectedChange)="onChangePiso($event)"
+        >
+          <nb-option *ngFor="let piso of pisosListSelect" value="{{ piso.id }}">
+            {{ piso.name }}</nb-option
+          >
+        </nb-select>
+      </nb-action>
+      <nb-action
+        size="large"
+        icon="settings-2-outline"
+        (click)="onConfigPisos(bloqueSelect?.id)"
+      ></nb-action>
+    </nb-actions>
+    <nb-actions
+      size="medium"
+      *ngIf="!containerConfigPisos && pisosListSelect.length == 0"
+    >
+      <nb-action size="large" (click)="onConfigPisos(bloqueSelect?.id)">
+        <span class="m-r">Nuevo piso</span>
+        <button nbButton status="primary" outline>
+          <nb-icon icon="plus-outline"></nb-icon></button
+      ></nb-action>
+    </nb-actions>
+    <nb-actions size="medium" *ngIf="containerConfigPisos">
+      <nb-action size="large" (click)="onListSalones($event)">
+        <button nbButton status="primary" outline>Salones</button></nb-action
+      >
+    </nb-actions>
+  </nb-card-header>
+
+  <nb-card-body [nbSpinner]="loadSalones">
+    <ngx-piso-list *ngIf="containerConfigPisos && !loadSalones"></ngx-piso-list>
+    <nb-card *ngIf="salones && containerListSalones && !loadSalones">
+      <nb-card-header> Smart Table </nb-card-header>
+      <nb-card-body>
+        <!-- <ng2-smart-table
+          [settings]="settings"
+          [source]="source"
+          (edit)="onEdit($event)"
+          (create)="onCreate()"
+          (deleteConfirm)="onDeleteConfirm($event)"
+        >
+        </ng2-smart-table> -->
+      </nb-card-body>
+    </nb-card>
+    <p *ngIf="!salones && !loadPisos && !loadSalones">seleccione un piso</p>
+  </nb-card-body>
+</nb-card>

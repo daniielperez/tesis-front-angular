@@ -1,0 +1,49 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" aria-labelledby="title">
+  <nb-card>
+    <nb-card-header>Nuevo bloque</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="label" for="input-nombre">Nombre:</label>
+            <input
+              nbInput
+              fullWidth
+              id="input-nombre"
+              placeholder="Nombre del campo"
+              formControlName="nombre"
+              [status]="
+                f.nombre.dirty
+                  ? f.nombre.invalid
+                    ? 'danger'
+                    : 'success'
+                  : 'basic'
+              "
+              [attr.aria-invalid]="
+                f.nombre.invalid && f.nombre.touched ? true : null
+              "
+            />
+            <ng-container *ngIf="f.nombre.invalid && f.nombre.touched">
+              <app-form-errors
+                [control]="f.nombre"
+                campo="email"
+              ></app-form-errors>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        type="button"
+        class="cancel"
+        (click)="cancel()"
+        nbButton
+        status="basic"
+      >
+        Cancel
+      </button>
+      <button nbButton status="warning">Submit</button>
+    </nb-card-footer>
+  </nb-card>
+</form>

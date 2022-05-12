@@ -1,0 +1,17 @@
+<ng-container *ngIf="control.invalid && control.touched">
+  <p class="caption status-danger" *ngIf="control.errors?.required">
+    El {{ campo }} es requerido!
+  </p>
+  <p class="caption status-danger" *ngIf="control.errors?.email">
+    Digita un email real!
+  </p>
+  <p class="caption status-danger" *ngIf="control.errors?.minlength">
+    La contraseña debe contener almenos
+    {{ control.errors?.minlength.requiredLength }} caracteres
+  </p>
+  <p class="caption status-danger" *ngIf="control.errors?.maxlength">
+    La contraseña no debe pasar los
+    {{ control.errors?.maxlength?.requiredLength }}
+    caracteres
+  </p>
+</ng-container>
