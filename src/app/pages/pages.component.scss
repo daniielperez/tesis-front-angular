@@ -28,4 +28,37 @@
     border-color: nb-theme(color-primary-focus);
     box-shadow: none;
   }
+  ::ng-deep .ng-select {
+    // padding-bottom: 0px !important;
+  }
+  ::ng-deep .ng-placeholder {
+    color: nb-theme(text-hint-color) !important;
+  }
+  ::ng-deep .ng-value-container {
+    color: nb-theme(text-hint-color) !important;
+  }
+
+  ::ng-deep
+    .ng-select.ng-select-focused
+    .ng-select-container
+    .ng-arrow-wrapper
+    .ng-arrow {
+    color: nb-theme(color-primary-focus);
+  }
+  ::ng-deep .ng-select.ng-select-focused .ng-select-container:after {
+    border-color: nb-theme(color-primary-focus);
+    border-width: 2px;
+  }
+  ::ng-deep .ng-select-container:after {
+    border-color: nb-theme(text-hint-color);
+    border-width: 2px;
+  }
+  ::ng-deep input {
+    color: nb-theme(text-basic-color);
+  }
+  ::ng-deep .button-them {
+    background-color: nb-theme(color-primary-focus) !important;
+    border-color: nb-theme(color-primary-focus) !important;
+    color: nb-theme(color-primary-100) !important;
+  }
 }

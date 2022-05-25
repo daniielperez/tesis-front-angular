@@ -28,6 +28,7 @@ import {
   LayoutDirectionSwitcherComponent,
   SwitcherComponent,
   ThemeSettingsComponent,
+  FormErrorsComponent,
 } from "./components";
 import {
   CapitalizePipe,
@@ -78,6 +79,7 @@ const COMPONENTS = [
   SwitcherComponent,
   SampleLayoutComponent,
   ThemeSettingsComponent,
+  FormErrorsComponent,
 ];
 const PIPES = [
   CapitalizePipe,

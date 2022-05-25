@@ -28,13 +28,13 @@
                 f.nombre.invalid && f.nombre.touched ? true : null
               "
             />
-            <ng-container *ngIf="f.nombre.invalid && f.nombre.touched">
-              <app-form-errors
-                [control]="f.nombre"
-                campo="email"
-              ></app-form-errors>
-            </ng-container>
           </div>
+          <ng-container *ngIf="f.nombre.invalid && f.nombre.touched">
+            <app-form-errors
+              [control]="f.nombre"
+              campo="email"
+            ></app-form-errors>
+          </ng-container>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
@@ -59,13 +59,13 @@
                 f.direccion.invalid && f.direccion.touched ? true : null
               "
             />
-            <ng-container *ngIf="f.direccion.invalid && f.direccion.touched">
-              <app-form-errors
-                [control]="f.direccion"
-                campo="Direccion"
-              ></app-form-errors>
-            </ng-container>
           </div>
+          <ng-container *ngIf="f.direccion.invalid && f.direccion.touched">
+            <app-form-errors
+              [control]="f.direccion"
+              campo="Direccion"
+            ></app-form-errors>
+          </ng-container>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
@@ -91,25 +91,25 @@
                 f.telefono.invalid && f.telefono.touched ? true : null
               "
             />
-            <ng-container *ngIf="f.telefono.invalid && f.telefono.touched">
-              <app-form-errors
-                [control]="f.telefono"
-                campo="Telefono"
-              ></app-form-errors>
-            </ng-container>
           </div>
+          <ng-container *ngIf="f.telefono.invalid && f.telefono.touched">
+            <app-form-errors
+              [control]="f.telefono"
+              campo="Telefono"
+            ></app-form-errors>
+          </ng-container>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
+            <br />
             <span class="label-with-link">
-              <label class="label" for="input-extension">Extencion:</label>
               <ng-select
                 [items]="selectExtension"
                 formControlName="extension"
                 id="extension"
                 bindLabel="name"
                 bindValue="id"
-                placeholder="Select city"
+                placeholder="Extencion:"
               >
               </ng-select>
               <ng-container *ngIf="f.extension.invalid && f.extension.touched">
@@ -133,7 +133,7 @@
       >
         Cancel
       </button>
-      <button nbButton status="warning">Submit</button>
+      <button nbButton class="button-them">Submit</button>
     </nb-card-footer>
   </nb-card>
 </form>
