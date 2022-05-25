@@ -7,7 +7,7 @@
 # dependencies
 /node_modules
 
-# IDEs and editorss
+# IDEs and editors
 /.idea
 .project
 .classpath
