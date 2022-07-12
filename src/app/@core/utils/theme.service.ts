@@ -1,13 +1,13 @@
-import {Injectable, OnDestroy} from '@angular/core';
-import {Observable} from 'rxjs';
-import {takeWhile} from 'rxjs/operators';
-import {environment} from '../../../environments/environment';
+import { Injectable, OnDestroy } from "@angular/core";
+import { Observable } from "rxjs";
+import { takeWhile } from "rxjs/operators";
+import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class CurrentThemeService implements OnDestroy {
   alive = true;
 
-  readonly currentTheme$: Observable<any> = new Observable(subscriber => {
+  readonly currentTheme$: Observable<any> = new Observable((subscriber) => {
     subscriber.next(localStorage.theme);
   }).pipe(takeWhile(() => this.alive));
 
@@ -17,11 +17,13 @@ export class CurrentThemeService implements OnDestroy {
       expires_in: this.calculateExpiration(environment.currentThemeLife),
     };
 
-    localStorage.setItem('theme', JSON.stringify(currentTheme));
+    localStorage.setItem("theme", JSON.stringify(currentTheme));
   }
 
   getCurrentTheme(): string {
-    return localStorage.theme ? JSON.parse(localStorage.theme).themeName : 'default';
+    return localStorage.theme
+      ? JSON.parse(localStorage.theme).themeName
+      : "default";
   }
 
   calculateExpiration(iat: number): number {

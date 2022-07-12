@@ -72,6 +72,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     // Unsubscribe from the subject
     this.destroy$.unsubscribe();
   }
+
   onChangeBloque(bloque: any) {
     this.salonComponent = true;
     this._bloqueService.selectBloque(bloque);

@@ -115,7 +115,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.destroy$.next();
-    this.destroy$.complete();
+    this.destroy$.complete(); 
   }
 
   changeTheme(themeName: string) {
@@ -155,7 +155,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.router.navigate(["/auth/login"]);
     } else if (title === "Profile") {
       // Do something on Profile
-      console.log("Profile Clicked ");
     }
   }
 }
