@@ -1,12 +1,9 @@
 ﻿export interface Salon {
   id: number;
   nombre: string;
-  puesto: string;
-  caracteristica: string;
+  cupo: string;
   dimension: string;
-  limite: string;
-  slmite: string;
-  nfc: string;
+  codDispositivo: string;
   piso: any;
-  tsalon: any;
+  tipoSalon: any;
 }

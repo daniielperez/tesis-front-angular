@@ -46,6 +46,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: "Infraestructura",
         link: "/pages/infraestructura/index",
       },
+      {
+        title: "Tipo salones",
+        link: "/pages/infraestructura/tipoSalon",
+      },
     ],
   },
 ];

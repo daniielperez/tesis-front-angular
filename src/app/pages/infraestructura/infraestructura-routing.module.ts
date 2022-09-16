@@ -7,6 +7,7 @@ import { IndexComponent } from "./index/index.component";
 import { EdificioListComponent } from "./edificio-list/edificio-list.component";
 import { BloqueListComponent } from "./bloque-list/bloque-list.component";
 import { PisoListComponent } from "./piso-list/piso-list.component";
+import { TipoSalonListComponent } from "./tipoSalon-list/tipoSalon-list.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: "piso",
         component: PisoListComponent,
+      },
+      {
+        path: "tipoSalon",
+        component: TipoSalonListComponent,
       },
     ],
   },

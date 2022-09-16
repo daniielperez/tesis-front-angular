@@ -32,7 +32,7 @@ export class SalonListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._bloqueService.change.subscribe((data: Bloque) => {
+    this._bloqueService.changeSelect.subscribe((data: Bloque) => {
       this.bloqueSelect = data;
       this.salones = null;
       this.resetContainers();

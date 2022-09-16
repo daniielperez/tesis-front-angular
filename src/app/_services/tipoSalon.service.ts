@@ -3,33 +3,32 @@ import { HttpClient } from "@angular/common/http";
 
 import { environment } from "../../environments/environment";
 import { map } from "rxjs/operators";
-import { Bloque, Select } from "../_models";
+import { TipoSalon, Select } from "../_models";
 
 @Injectable({
   providedIn: "root",
 })
-export class BloqueService {
-  private bloqueSelect: Bloque;
-
+export class TipoSalonService {
+  private url: string = `${environment.apiUrl}/tipoSalon`;
   constructor(private http: HttpClient) {}
 
-  @Output() changeSelect: EventEmitter<Bloque> = new EventEmitter();
-
-  public getAll(id: number) {
+  public getAll() {
     return this.http
-      .get<Bloque[]>(`${environment.apiUrl}/bloques/fk/` + id, {
+      .get<TipoSalon[]>(this.url + "/", {
         observe: "response",
       })
       .pipe(
         map((reques) => {
-          return reques.body.map((bloque) => Bloque.bloqueDesdeJson(bloque));
+          return reques.body.map((tiposalon) =>
+            TipoSalon.TipoSalonDesdeJson(tiposalon)
+          );
         })
       );
   }
 
   insert(sede: any) {
     return this.http
-      .post<Bloque[]>(`${environment.apiUrl}/bloques/`, sede, {
+      .post<TipoSalon[]>(this.url + "/", sede, {
         observe: "response",
         responseType: "json",
       })
@@ -42,7 +41,7 @@ export class BloqueService {
 
   public getSelect(id: number) {
     return this.http
-      .get<Select[]>(`${environment.apiUrl}/bloques/select/fk/` + id, {
+      .get<Select[]>(this.url + "/select/fk/" + id, {
         observe: "response",
       })
       .pipe(
@@ -50,14 +49,5 @@ export class BloqueService {
           return reques.body;
         })
       );
-  }
-
-  selectBloque(bloque: Bloque) {
-    this.bloqueSelect = Bloque.bloqueSelectDesdeJson(bloque);
-    this.changeSelect.emit(this.bloqueSelect);
-  }
-
-  public getBloque(): Bloque {
-    return this.bloqueSelect;
   }
 }

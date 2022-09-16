@@ -1,25 +1,20 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { BloqueService, PisoService } from "../../../_services";
-import { NbMenuItem } from "@nebular/theme";
+import { BloqueService, TipoSalonService } from "../../../_services";
 import { LocalDataSource } from "ng2-smart-table";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { Bloque, Piso } from "../../../_models";
-// import { PisoFormComponent } from "../piso-form/piso-form.component";
+import { TipoSalon } from "../../../_models";
+// import { TipoSalonFormComponent } from "../tipoSalon-form/tipoSalon-form.component";
 
 @Component({
-  selector: "ngx-piso-list",
-  templateUrl: "./piso-list.component.html",
-  styleUrls: ["./piso-list.component.scss"],
+  selector: "ngx-tipoSalon-list",
+  templateUrl: "./tipoSalon-list.component.html",
+  styleUrls: ["./tipoSalon-list.component.scss"],
 })
-export class PisoListComponent implements OnInit, OnDestroy {
-  bloqueSelect: Bloque;
-
+export class TipoSalonListComponent implements OnInit, OnDestroy {
   load = true;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
-
-  items: NbMenuItem[] = [];
 
   settings = {
     // mode: "external",
@@ -59,26 +54,17 @@ export class PisoListComponent implements OnInit, OnDestroy {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(
-    private _bloqueService: BloqueService,
-    private pisoService: PisoService
-  ) {
-    this.bloqueSelect = this._bloqueService.getBloque();
-  }
+  constructor(private tipoSalonService: TipoSalonService) {}
 
   ngOnInit(): void {
-    this._bloqueService.changeSelect.subscribe((data: Bloque) => {
-      this.bloqueSelect = data;
-      this.loadTable();
-    });
     this.loadTable();
   }
 
   loadTable() {
-    this.pisoService
-      .getAll(this.bloqueSelect.id)
+    this.tipoSalonService
+      .getAll()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((res: Piso[]) => {
+      .subscribe((res: TipoSalon[]) => {
         this.source.load(res);
         this.load = false;
       });
@@ -93,13 +79,11 @@ export class PisoListComponent implements OnInit, OnDestroy {
   }
 
   onCreateConfirm(event) {
-    event.newData.idBloque = this.bloqueSelect.id;
     this.send(event.newData);
     event.confirm.resolve();
   }
 
   onSaveConfirm(event) {
-    event.newData.idBloque = this.bloqueSelect.id;
     console.log(event.newData);
     this.send(event.newData);
     event.confirm.resolve();
@@ -113,7 +97,7 @@ export class PisoListComponent implements OnInit, OnDestroy {
 
   send(data) {
     this.load = true;
-    this.pisoService
+    this.tipoSalonService
       .insert(data)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {

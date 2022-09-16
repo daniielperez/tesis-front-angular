@@ -39,6 +39,7 @@ import { EdificioFormComponent } from "./edificio-form/edificio-form.component";
 import { EdificioListComponent } from "./edificio-list/edificio-list.component";
 import { SalonListComponent } from "./salon-list/salon-list.component";
 import { BloqueFormComponent } from "./bloque-form/bloque-form.component";
+import { TipoSalonListComponent } from "./tipoSalon-list/tipoSalon-list.component";
 
 const COMPONENTS = [
   CustomEditorComponent,
@@ -86,6 +87,7 @@ const MODULES = [
     EdificioListComponent,
     SalonListComponent,
     BloqueFormComponent,
+    TipoSalonListComponent,
   ],
 })
 export class InfraestructuraModule {}
