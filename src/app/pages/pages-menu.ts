@@ -38,10 +38,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: "Edificios",
     icon: "grid-outline",
     children: [
-      {
-        title: "Sedes",
-        link: "/pages/infraestructura/smart-table",
-      },
+      // {
+      //   title: "Sedes",
+      //   link: "/pages/infraestructura/smart-table",
+      // },
       {
         title: "Infraestructura",
         link: "/pages/infraestructura/index",

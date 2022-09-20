@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { EdificioService } from "../../../_services";
+import { EdificioService } from "../../../../_services";
 import { NbDialogService } from "@nebular/theme";
 import { EdificioFormComponent } from "../edificio-form/edificio-form.component";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { Edificio } from "../../../_models";
+import { Edificio } from "../../../../_models";
 import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({

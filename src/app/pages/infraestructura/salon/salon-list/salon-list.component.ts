@@ -2,8 +2,8 @@ import { HttpResponse } from "@angular/common/http";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { Select, Bloque, Piso } from "../../../_models";
-import { BloqueService, PisoService } from "../../../_services";
+import { Select, Bloque, Piso } from "../../../../_models";
+import { BloqueService, PisoService } from "../../../../_services";
 
 @Component({
   selector: "ngx-salon-list",
@@ -32,12 +32,14 @@ export class SalonListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._bloqueService.changeSelect.subscribe((data: Bloque) => {
-      this.bloqueSelect = data;
-      this.salones = null;
-      this.resetContainers();
-      this.getPisosSelected(this.bloqueSelect.id);
-    });
+    this._bloqueService.changeSelect
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: Bloque) => {
+        this.bloqueSelect = data;
+        this.salones = null;
+        this.resetContainers();
+        this.getPisosSelected(this.bloqueSelect.id);
+      });
   }
 
   ngOnDestroy() {
@@ -59,22 +61,26 @@ export class SalonListComponent implements OnInit, OnDestroy {
   }
 
   onChangePiso(piso: any) {
-    this.getSalones(piso);
+    console.log(piso);
+    this.pisoService.selectPiso(piso);
+    this.salones = true;
+    this.resetContainers();
+    this.containerListSalones = true;
   }
 
-  getSalones(piso: any) {
-    this.loadSalones = true;
+  // getSalones(piso: any) {
+  //   this.loadSalones = true;
 
-    this.pisoService
-      .getSelect(this.bloqueSelect.id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((res: Select[]) => {
-        this.salones = res;
-        this.resetContainers();
-        this.containerListSalones = true;
-        this.loadSalones = false;
-      });
-  }
+  //   this.pisoService
+  //     .getSelect(this.bloqueSelect.id)
+  //     .pipe(takeUntil(this.destroy$))
+  //     .subscribe((res: Select[]) => {
+  //       this.salones = res;
+  //       this.resetContainers();
+  //       this.containerListSalones = true;
+  //       this.loadSalones = false;
+  //     });
+  // }
 
   onConfigPisos(bloqueId: number) {
     this.salones = null;

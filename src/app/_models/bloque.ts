@@ -1,10 +1,4 @@
-﻿export interface Bloque {
-  id: number;
-  nombre: string;
-  idEdificio: any;
-}
-
-export class Bloque {
+﻿export class Bloque {
   static bloqueDesdeJson(obj: object) {
     return new Bloque(obj["id"], obj["nombre"], obj["idEdificio"]);
   }

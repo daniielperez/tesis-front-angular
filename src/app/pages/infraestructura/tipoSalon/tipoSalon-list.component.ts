@@ -7,7 +7,7 @@ import { TipoSalon } from "../../../_models";
 // import { TipoSalonFormComponent } from "../tipoSalon-form/tipoSalon-form.component";
 
 @Component({
-  selector: "ngx-tipoSalon-list",
+  selector: "ngx-table-salon-list",
   templateUrl: "./tipoSalon-list.component.html",
   styleUrls: ["./tipoSalon-list.component.scss"],
 })

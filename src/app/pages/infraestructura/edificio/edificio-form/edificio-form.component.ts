@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { NbDialogRef } from "@nebular/theme";
-import { FormService } from "../../../_services/form.service";
+import { FormService } from "../../../../_services/form.service";
 
 @Component({
   selector: "ngx-edificio-form",

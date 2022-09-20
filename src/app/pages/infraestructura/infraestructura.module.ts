@@ -31,19 +31,19 @@ import {
   routedComponents,
 } from "./infraestructura-routing.module";
 
-import { CustomEditorComponent } from "./smart-table/custom-editor.component";
-import { DialogNamePromptComponent } from "./dialog-name-prompt/new-sede.component";
+import { CustomEditorComponent } from "./salon/table/custom-editor.component";
+import { SalonFormComponent } from "./salon/salon-form/salon-form.component";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { IndexComponent } from "./index/index.component";
-import { EdificioFormComponent } from "./edificio-form/edificio-form.component";
-import { EdificioListComponent } from "./edificio-list/edificio-list.component";
-import { SalonListComponent } from "./salon-list/salon-list.component";
-import { BloqueFormComponent } from "./bloque-form/bloque-form.component";
-import { TipoSalonListComponent } from "./tipoSalon-list/tipoSalon-list.component";
+import { EdificioFormComponent } from "./edificio/edificio-form/edificio-form.component";
+import { EdificioListComponent } from "./edificio/edificio-list/edificio-list.component";
+import { SalonListComponent } from "./salon/salon-list/salon-list.component";
+import { BloqueFormComponent } from "./bloque/bloque-form/bloque-form.component";
+import { TipoSalonListComponent } from "./tipoSalon/tipoSalon-list.component";
 
 const COMPONENTS = [
   CustomEditorComponent,
-  DialogNamePromptComponent,
+  SalonFormComponent,
   EdificioFormComponent,
 ];
 

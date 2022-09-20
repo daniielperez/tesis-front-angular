@@ -4,20 +4,23 @@ import { takeUntil } from "rxjs/operators";
 
 // import { CustomEditorComponent } from "./custom-editor.component";
 
-import { SedeService } from "../../../_services";
+import { PisoService, SalonService } from "../../../../_services/index";
 import { Subject } from "rxjs";
 import { HttpResponse } from "@angular/common/http";
-import { Sede } from "../../../_models";
+import { Piso, Salon } from "../../../../_models";
 import { NbDialogService } from "@nebular/theme";
 
-import { DialogNamePromptComponent } from "../dialog-name-prompt/new-sede.component";
+import { SalonFormComponent } from "../salon-form/salon-form.component";
 
 @Component({
-  selector: "ngx-smart-table",
-  templateUrl: "./smart-table.component.html",
-  styleUrls: ["./smart-table.component.scss"],
+  selector: "ngx-table-salon",
+  templateUrl: "./table-salon.component.html",
+  styleUrls: ["./table-salon.component.scss"],
 })
 export class SmartTableComponent implements OnInit, OnDestroy {
+  load: boolean = true;
+  pisoSelect: Piso;
+  salones: Salon[];
   destroy$: Subject<boolean> = new Subject<boolean>();
   settings = {
     mode: "external",
@@ -47,17 +50,32 @@ export class SmartTableComponent implements OnInit, OnDestroy {
         title: "ID",
         type: "number",
       },
+      // nombre: {
+      //   title: "nombre",
+      //   editor: {
+      //     type: "custom",
+      //     component: CustomEditorComponent,
+      //   },
+      // },
       nombre: {
         title: "Nombre",
         type: "string",
       },
-      direccion: {
-        title: "Direccion",
+      cupo: {
+        title: "Cupo",
         type: "string",
       },
-      telefono: {
-        title: "Telefono",
+      dimension: {
+        title: "Dimensiones(m²)",
         type: "number",
+      },
+      codDispositivo: {
+        title: "Dispositivo",
+        type: "number",
+      },
+      nomTipoSalon: {
+        title: "nomTipoSalon",
+        type: "string",
       },
     },
   };
@@ -65,21 +83,30 @@ export class SmartTableComponent implements OnInit, OnDestroy {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(
-    private sedeService: SedeService,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    private _pisoService: PisoService,
+    private _salonService: SalonService
   ) {}
 
   ngOnInit(): void {
+    console.log("daniel");
+    this.pisoSelect = this._pisoService.getPiso();
     this.loadTable();
+    this._pisoService.changeSelect.subscribe((data: Piso) => {
+      this.pisoSelect = data;
+      this.load = true;
+      this.loadTable();
+    });
   }
 
   loadTable() {
-    this.sedeService
-      .getAll()
+    this._salonService
+      .getAll(this.pisoSelect.id)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((res: HttpResponse<Sede[]>) => {
+      .subscribe((res: Salon[]) => {
         console.log(res);
-        this.source.load(res.body);
+        this.source.load(res);
+        this.load = false;
       });
   }
 
@@ -93,7 +120,7 @@ export class SmartTableComponent implements OnInit, OnDestroy {
 
   onEdit(event): void {
     this.dialogService
-      .open(DialogNamePromptComponent, {
+      .open(SalonFormComponent, {
         context: { form: event.data },
         closeOnBackdropClick: false,
       })
@@ -106,7 +133,7 @@ export class SmartTableComponent implements OnInit, OnDestroy {
 
   onCreate() {
     this.dialogService
-      .open(DialogNamePromptComponent, {
+      .open(SalonFormComponent, {
         closeOnBackdropClick: false,
       })
       .onClose.subscribe((requestModal) => {
@@ -118,12 +145,13 @@ export class SmartTableComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.destroy$.next(true);
-    // Unsubscribe from the subject
     this.destroy$.unsubscribe();
   }
 
   send(requestModal) {
-    this.sedeService
+    this.load = true;
+    requestModal.value.idPiso = this.pisoSelect.id;
+    this._salonService
       .insert(requestModal.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {

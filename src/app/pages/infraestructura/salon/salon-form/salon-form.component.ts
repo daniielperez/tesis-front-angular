@@ -1,26 +1,25 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { NbDialogRef } from "@nebular/theme";
-import { FormService, ExtensionService } from "../../../_services";
-import { HttpResponse } from "@angular/common/http";
-import { Select } from "../../../_models";
+import { FormService, TipoSalonService } from "../../../../_services";
+import { Select } from "../../../../_models";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 
 @Component({
-  selector: "app-new-sede",
-  templateUrl: "./new-sede.component.html",
-  styleUrls: ["./new-sede.component.scss"],
+  selector: "app-salon-form",
+  templateUrl: "./salon-form.component.html",
+  styleUrls: ["./salon-form.component.scss"],
   providers: [FormService],
 })
-export class DialogNamePromptComponent implements OnInit, OnDestroy {
+export class SalonFormComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
   form: FormGroup;
-  selectExtension: Select[];
+  selectTipoSalon: Select[];
   constructor(
-    protected ref: NbDialogRef<DialogNamePromptComponent>,
+    protected ref: NbDialogRef<SalonFormComponent>,
     private formService: FormService,
-    private extensionService: ExtensionService
+    private _tipoSalonService: TipoSalonService
   ) {}
 
   get f() {
@@ -28,13 +27,13 @@ export class DialogNamePromptComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.form = this.formService.newFormSede(this.form);
+    this.form = this.formService.newFormSalon(this.form);
 
-    this.extensionService
+    this._tipoSalonService
       .getSelect()
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: Select[]) => {
-        this.selectExtension = res;
+        this.selectTipoSalon = res;
       });
   }
 

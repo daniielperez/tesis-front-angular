@@ -2,12 +2,12 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { InfraestructuraComponent } from "./infraestructura.component";
-import { SmartTableComponent } from "./smart-table/smart-table.component";
+import { SmartTableComponent } from "./salon/table/table-salon.component";
 import { IndexComponent } from "./index/index.component";
-import { EdificioListComponent } from "./edificio-list/edificio-list.component";
-import { BloqueListComponent } from "./bloque-list/bloque-list.component";
-import { PisoListComponent } from "./piso-list/piso-list.component";
-import { TipoSalonListComponent } from "./tipoSalon-list/tipoSalon-list.component";
+import { EdificioListComponent } from "./edificio/edificio-list/edificio-list.component";
+import { BloqueListComponent } from "./bloque/bloque-list/bloque-list.component";
+import { PisoListComponent } from "./piso/piso-list.component";
+import { TipoSalonListComponent } from "./tipoSalon/tipoSalon-list.component";
 
 const routes: Routes = [
   {

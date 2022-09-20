@@ -9,12 +9,12 @@ import { Piso, Select } from "../_models";
   providedIn: "root",
 })
 export class PisoService {
-  private bloqueSelect: Piso;
+  private pisoSelect: Piso;
 
   private url: String = `${environment.apiUrl}/pisos`;
   constructor(private http: HttpClient) {}
 
-  @Output() change: EventEmitter<Piso> = new EventEmitter();
+  @Output() changeSelect: EventEmitter<Piso> = new EventEmitter();
 
   public getAll(id: number) {
     return this.http
@@ -53,16 +53,16 @@ export class PisoService {
       );
   }
 
-  selectPiso(bloque: Piso) {
-    this.setPiso(bloque);
-    this.change.emit(this.bloqueSelect);
+  selectPiso(piso: Piso) {
+    this.setPiso(piso);
+    this.changeSelect.emit(this.pisoSelect);
   }
 
   public getPiso(): Piso {
-    return this.bloqueSelect;
+    return this.pisoSelect;
   }
 
-  public setPiso(bloque: Piso): void {
-    this.bloqueSelect = Piso.pisoDesdeJson(bloque);
+  public setPiso(piso: Piso): void {
+    this.pisoSelect = Piso.pisoDesdeJson(piso);
   }
 }

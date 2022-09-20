@@ -67,10 +67,12 @@ export class PisoListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._bloqueService.changeSelect.subscribe((data: Bloque) => {
-      this.bloqueSelect = data;
-      this.loadTable();
-    });
+    this._bloqueService.changeSelect
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: Bloque) => {
+        this.bloqueSelect = data;
+        this.loadTable();
+      });
     this.loadTable();
   }
 

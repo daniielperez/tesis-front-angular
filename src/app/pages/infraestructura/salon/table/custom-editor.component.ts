@@ -3,7 +3,6 @@ import { DefaultEditor } from "ng2-smart-table";
 
 @Component({
   template: `
-    Name:
     <input
       [ngClass]="inputClass"
       #id
@@ -18,6 +17,18 @@ import { DefaultEditor } from "ng2-smart-table";
       (keydown.enter)="onEdited.emit($event)"
       (keydown.esc)="onStopEditing.emit()"
     /><br />
+    <input
+      [ngClass]="inputClass"
+      #url
+      class="form-control short-input"
+      [name]="cell.getId()"
+      [disabled]="!cell.isEditable()"
+      placeholder="Url"
+      (click)="onClick.emit($event)"
+      (keyup)="updateValue()"
+      (keydown.enter)="onEdited.emit($event)"
+      (keydown.esc)="onStopEditing.emit()"
+    />
     <div [hidden]="true" [innerHTML]="cell.getValue()" #htmlValue></div>
   `,
 })

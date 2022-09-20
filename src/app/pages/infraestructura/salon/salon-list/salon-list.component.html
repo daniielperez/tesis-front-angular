@@ -12,9 +12,8 @@
           status="primary"
           size="small"
           placeholder="Pisos"
-          (selectedChange)="onChangePiso($event)"
         >
-          <nb-option *ngFor="let piso of pisosListSelect" value="{{ piso.id }}">
+          <nb-option *ngFor="let piso of pisosListSelect" value="{{ piso.id }}" (click)="onChangePiso(piso)">
             {{ piso.name }}</nb-option
           >
         </nb-select>
@@ -44,19 +43,8 @@
 
   <nb-card-body [nbSpinner]="loadSalones">
     <ngx-piso-list *ngIf="containerConfigPisos && !loadSalones"></ngx-piso-list>
-    <nb-card *ngIf="salones && containerListSalones && !loadSalones">
-      <nb-card-header> Smart Table </nb-card-header>
-      <nb-card-body>
-        <!-- <ng2-smart-table
-          [settings]="settings"
-          [source]="source"
-          (edit)="onEdit($event)"
-          (create)="onCreate()"
-          (deleteConfirm)="onDeleteConfirm($event)"
-        >
-        </ng2-smart-table> -->
-      </nb-card-body>
-    </nb-card>
+    <ngx-table-salon *ngIf="salones && containerListSalones && !loadSalones"></ngx-table-salon>
+    <!-- <ngx-table-salon ></ngx-table-salon> -->
     <p *ngIf="!salones && !loadPisos && !loadSalones">seleccione un piso</p>
   </nb-card-body>
 </nb-card>

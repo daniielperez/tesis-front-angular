@@ -47,17 +47,15 @@ export class FormService {
     });
   }
   newFormSalon(d?) {
+    
     return this.formBuilder.group({
       id: [d?.id],
       nombre: [d?.nombre, [Validators.required]],
-      puesto: [d?.puesto, [Validators.required]],
-      caracteristica: [d?.caracteristica],
+      cupo: [d?.cupo, [Validators.required]],
       dimension: [d?.dimension, [Validators.required]],
-      limite: [d?.limite, [Validators.required]],
-      slmite: [d?.slimite, [Validators.required]],
-      nfc: [d?.nfc],
-      piso: [d?.piso, [Validators.required]],
-      tsalon: [d?.tsalon, [Validators.required]],
+      codDispositivo: [d?.codDispositivo],
+      idPiso: [d?.idPiso],
+      idTipoSalon: [d?.idTipoSalon, [Validators.required]],
     });
   }
   newFormTsalon(d?) {

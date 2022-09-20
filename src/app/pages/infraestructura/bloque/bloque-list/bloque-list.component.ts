@@ -1,12 +1,12 @@
 import { HttpResponse } from "@angular/common/http";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { BloqueService } from "../../../_services";
+import { BloqueService } from "../../../../_services";
 import { NbDialogService, NbMenuItem } from "@nebular/theme";
 import { LocalDataSource } from "ng2-smart-table";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { Bloque } from "../../../_models";
+import { Bloque } from "../../../../_models";
 import { BloqueFormComponent } from "../bloque-form/bloque-form.component";
 
 @Component({
@@ -18,7 +18,7 @@ export class BloqueListComponent implements OnInit, OnDestroy {
   id;
   nombreEdificio;
 
-  load = true;
+  load: boolean = true;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 

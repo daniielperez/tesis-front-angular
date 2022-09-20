@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
-            <label class="label" for="input-nombre">Nombre:</label>
+            <label class="label" for="input-nombre">Nombre*:</label>
             <input
               nbInput
               fullWidth
@@ -39,82 +39,117 @@
         <div class="col-sm-6">
           <div class="form-group">
             <span class="label-with-link">
-              <label class="label" for="input-direccion">Direccion:</label>
+              <label class="label" for="input-cupo">Cupo*:</label>
             </span>
             <input
               nbInput
               fullWidth
               id="input-email"
-              placeholder="Direccion"
+              placeholder="Cupo"
               type="text"
-              formControlName="direccion"
+              formControlName="cupo"
               [status]="
-                f.direccion.dirty
-                  ? f.direccion.invalid
+                f.cupo.dirty
+                  ? f.cupo.invalid
                     ? 'danger'
                     : 'success'
                   : 'basic'
               "
               [attr.aria-invalid]="
-                f.direccion.invalid && f.direccion.touched ? true : null
+                f.cupo.invalid && f.cupo.touched ? true : null
               "
             />
           </div>
-          <ng-container *ngIf="f.direccion.invalid && f.direccion.touched">
+          <ng-container *ngIf="f.cupo.invalid && f.cupo.touched">
             <app-form-errors
-              [control]="f.direccion"
-              campo="Direccion"
+              [control]="f.cupo"
+              campo="Cupo"
             ></app-form-errors>
           </ng-container>
         </div>
+        
         <div class="col-sm-6">
           <div class="form-group">
             <span class="label-with-link">
-              <label class="label" for="input-telefono">Telefono:</label>
+              <label class="label" for="input-dimension">Dimension*:</label>
             </span>
             <input
               nbInput
               fullWidth
-              id="input-telefono"
-              placeholder="Telefono"
-              type="telefono"
-              formControlName="telefono"
+              id="input-dimension"
+              placeholder="Dimension"
+              type="dimension"
+              formControlName="dimension"
               type="number"
               [status]="
-                f.telefono.dirty
-                  ? f.telefono.invalid
+                f.dimension.dirty
+                  ? f.dimension.invalid
                     ? 'danger'
                     : 'success'
                   : 'basic'
               "
               [attr.aria-invalid]="
-                f.telefono.invalid && f.telefono.touched ? true : null
+                f.dimension.invalid && f.dimension.touched ? true : null
               "
             />
           </div>
-          <ng-container *ngIf="f.telefono.invalid && f.telefono.touched">
+          <ng-container *ngIf="f.dimension.invalid && f.dimension.touched">
             <app-form-errors
-              [control]="f.telefono"
-              campo="Telefono"
+              [control]="f.dimension"
+              campo="Dimension"
             ></app-form-errors>
           </ng-container>
         </div>
+
         <div class="col-sm-6">
+          <div class="form-group">
+            <span class="label-with-link">
+              <label class="label" for="input-codDispositivo">Dispositivo:</label>
+            </span>
+            <input
+              nbInput
+              fullWidth
+              id="input-codDispositivo"
+              placeholder="Dispositivo"
+              type="codDispositivo"
+              formControlName="codDispositivo"
+              type="string"
+              [status]="
+                f.codDispositivo.dirty
+                  ? f.codDispositivo.invalid
+                    ? 'danger'
+                    : 'success'
+                  : 'basic'
+              "
+              [attr.aria-invalid]="
+                f.codDispositivo.invalid && f.codDispositivo.touched ? true : null
+              "
+            />
+          </div>
+          <ng-container *ngIf="f.codDispositivo.invalid && f.codDispositivo.touched">
+            <app-form-errors
+              [control]="f.codDispositivo"
+              campo="Dispositivo"
+            ></app-form-errors>
+          </ng-container>
+        </div>
+
+        <div class="col-sm-12">
           <div class="form-group">
             <br />
             <span class="label-with-link">
               <ng-select
-                [items]="selectExtension"
-                formControlName="extension"
-                id="extension"
+                [items]="selectTipoSalon"
+                formControlName="idTipoSalon"
+                id="idTipoSalon"
                 bindLabel="name"
                 bindValue="id"
-                placeholder="Extencion:"
+                placeholder="Tipo:"
               >
               </ng-select>
-              <ng-container *ngIf="f.extension.invalid && f.extension.touched">
+              <ng-container *ngIf="f.idTipoSalon.invalid && f.idTipoSalon.touched">
                 <app-form-errors
-                  [control]="f.extension"
+                  [control]="f.idTipoSalon"
                   campo="Extension"
                 ></app-form-errors>
               </ng-container>
@@ -122,6 +157,7 @@
           </div>
         </div>
       </div>
+
     </nb-card-body>
     <nb-card-footer>
       <button
@@ -133,7 +169,7 @@
       >
         Cancel
       </button>
-      <button nbButton class="button-them">Submit</button>
+      <button nbButton [disabled]="form.invalid" class="button-them">Submit</button>
     </nb-card-footer>
   </nb-card>
 </form>
