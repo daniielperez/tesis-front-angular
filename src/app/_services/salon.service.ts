@@ -9,7 +9,8 @@ import { Salon, Select } from "../_models";
   providedIn: "root",
 })
 export class SalonService {
-  private url: String = `${environment.apiUrl}/salon`;
+  public url: String = `${environment.apiUrl}/operaciones/salon`;
+
   constructor(private http: HttpClient) {}
 
   public getAll(id: number) {

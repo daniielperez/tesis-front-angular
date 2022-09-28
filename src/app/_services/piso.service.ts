@@ -11,7 +11,7 @@ import { Piso, Select } from "../_models";
 export class PisoService {
   private pisoSelect: Piso;
 
-  private url: String = `${environment.apiUrl}/pisos`;
+  public url: String = `${environment.apiUrl}/operaciones/pisos`;
   constructor(private http: HttpClient) {}
 
   @Output() changeSelect: EventEmitter<Piso> = new EventEmitter();

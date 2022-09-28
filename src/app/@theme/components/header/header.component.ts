@@ -57,6 +57,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = "default";
 
+  usersKey = "angular-9-jwt-refresh-token-users";
+
   userMenu = [{ title: "Profile" }, { title: "Log out" }];
 
   public constructor(
@@ -85,10 +87,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.currentTheme = this.themeService.currentTheme;
 
-    this.userService
-      .getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => (this.user = users.nick));
+    this.user = JSON.parse(localStorage.getItem(this.usersKey))[0];
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService
@@ -115,7 +114,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.destroy$.next();
-    this.destroy$.complete(); 
+    this.destroy$.complete();
   }
 
   changeTheme(themeName: string) {

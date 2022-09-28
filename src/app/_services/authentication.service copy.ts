@@ -12,12 +12,10 @@ export class AuthenticationService {
   public url: String = `${environment.apiUrl}/security/oauth`;
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
-  users = [];
   usersKey = "angular-9-jwt-refresh-token-users";
-
+  users = [];
   constructor(private router: Router, private http: HttpClient) {
-    const userLoggin = JSON.parse(localStorage.getItem(this.usersKey));
-    this.userSubject = new BehaviorSubject<User>(userLoggin);
+    this.userSubject = new BehaviorSubject<User>(null);
     this.user = this.userSubject.asObservable();
   }
 
@@ -26,6 +24,8 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
+    console.log(1);
+
     let headers = new HttpHeaders();
     headers = headers.append(
       "Authorization",
@@ -44,18 +44,10 @@ export class AuthenticationService {
     return this.http
       .post<any>(this.url + "/token", body, { headers: headers })
       .pipe(
-        map((data) => {
-          let user = {
-            id: data.id,
-            username: data.nombre,
-            password: password,
-            firstName: data.nombre,
-            lastName: data.apellido,
-            jwtToken: data.access_token,
-          };
+        map((user) => {
           this.users.push(user);
-          this.userSubject.next(user);
           localStorage.setItem(this.usersKey, JSON.stringify(this.users));
+          this.userSubject.next(user);
           this.startRefreshTokenTimer();
           return user;
         })

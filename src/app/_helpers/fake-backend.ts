@@ -26,6 +26,7 @@ if (!users.length) {
     refreshTokens: [],
   });
   localStorage.setItem(usersKey, JSON.stringify(users));
+  alert(12);
 }
 
 @Injectable()

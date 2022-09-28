@@ -13,7 +13,7 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { JwtInterceptor, ErrorInterceptor, appInitializer } from "./_helpers";
 import { AuthenticationService } from "./_services";
-import { fakeBackendProvider } from "./_helpers";
+//import { fakeBackendProvider } from "./_helpers";
 
 import {
   NbChatModule,
@@ -45,17 +45,17 @@ import {
     ThemeModule.forRoot(),
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: appInitializer,
-      multi: true,
-      deps: [AuthenticationService],
-    },
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: appInitializer,
+    //   multi: true,
+    //   deps: [AuthenticationService],
+    // },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-    // provider used to create fake backend
-    fakeBackendProvider,
+    //provider used to create fake backend
+    // fakeBackendProvider,
   ],
   bootstrap: [AppComponent],
 })

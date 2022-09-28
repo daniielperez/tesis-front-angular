@@ -101,7 +101,7 @@
       <nb-user
         [nbContextMenu]="userMenu"
         [onlyPicture]="userPictureOnly"
-        [name]="user?.name"
+        [name]="user?.username | titlecase" 
         [picture]="user?.picture"
       >
       </nb-user>

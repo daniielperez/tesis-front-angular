@@ -13,10 +13,10 @@ export class EdificioService {
   constructor(private http: HttpClient) {}
 
   @Output() change: EventEmitter<Edificio> = new EventEmitter();
-
+  public url: String = `${environment.apiUrl}/operaciones/edificios`;
   public getAll() {
     return this.http
-      .get<Edificio[]>(`${environment.apiUrl}/edificios`, {
+      .get<Edificio[]>(this.url + "/", {
         observe: "response",
       })
       .pipe(
@@ -30,7 +30,7 @@ export class EdificioService {
 
   insert(sede: any) {
     return this.http
-      .post<Edificio[]>(`${environment.apiUrl}/edificios`, sede, {
+      .post<Edificio[]>(this.url + "/", sede, {
         observe: "response",
         responseType: "json",
       })

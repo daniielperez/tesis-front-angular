@@ -9,7 +9,7 @@ import { TipoSalon, Select } from "../_models";
   providedIn: "root",
 })
 export class TipoSalonService {
-  private url: string = `${environment.apiUrl}/tipoSalon`;
+  private url: string = `${environment.apiUrl}/operaciones/tipoSalon`;
   constructor(private http: HttpClient) {}
 
   public getAll() {

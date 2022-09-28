@@ -14,10 +14,10 @@ export class BloqueService {
   constructor(private http: HttpClient) {}
 
   @Output() changeSelect: EventEmitter<Bloque> = new EventEmitter();
-
+  public url: String = `${environment.apiUrl}/operaciones/bloques`;
   public getAll(id: number) {
     return this.http
-      .get<Bloque[]>(`${environment.apiUrl}/bloques/fk/` + id, {
+      .get<Bloque[]>(this.url + "/fk/" + id, {
         observe: "response",
       })
       .pipe(
@@ -29,7 +29,7 @@ export class BloqueService {
 
   insert(sede: any) {
     return this.http
-      .post<Bloque[]>(`${environment.apiUrl}/bloques/`, sede, {
+      .post<Bloque[]>(this.url + "/", sede, {
         observe: "response",
         responseType: "json",
       })
@@ -42,7 +42,7 @@ export class BloqueService {
 
   public getSelect(id: number) {
     return this.http
-      .get<Select[]>(`${environment.apiUrl}/bloques/select/fk/` + id, {
+      .get<Select[]>(this.url + "/select/fk/" + id, {
         observe: "response",
       })
       .pipe(
