@@ -10,6 +10,8 @@
 
 export const environment = {
   production: false,
+  clientId: "frontendappangular",
+  clientSecret: "q%Us6Mq**3!@Z7BwI%ei4opRZl%9Qr",
   apiUrl: "http://localhost:8090/api",
   currentThemeLife: 604800000, // 1 week in milliseconds
 };

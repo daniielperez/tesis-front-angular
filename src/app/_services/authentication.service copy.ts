@@ -12,10 +12,12 @@ export class AuthenticationService {
   public url: String = `${environment.apiUrl}/security/oauth`;
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
-  usersKey = "angular-9-jwt-refresh-token-users";
   users = [];
+  usersKey = "angular-9-jwt-refresh-token-users";
+
   constructor(private router: Router, private http: HttpClient) {
-    this.userSubject = new BehaviorSubject<User>(null);
+    const userLoggin = JSON.parse(localStorage.getItem(this.usersKey));
+    this.userSubject = new BehaviorSubject<User>(userLoggin);
     this.user = this.userSubject.asObservable();
   }
 
@@ -24,17 +26,13 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    console.log(1);
-
     let headers = new HttpHeaders();
-    headers = headers.append(
+    headers.append(
       "Authorization",
-      "Basic " + btoa("frontendapp:12345")
+      "Basic " + btoa(`${environment.clientId}:${environment.clientSecret}`)
+      //"Basic " + btoa("frontendapp:12345")
     );
-    headers = headers.append(
-      "Content-Type",
-      "application/x-www-form-urlencoded"
-    );
+    headers.append("Content-Type", "application/x-www-form-urlencoded");
 
     const body = new HttpParams()
       .set("username", username)
@@ -42,13 +40,15 @@ export class AuthenticationService {
       .set("grant_type", "password");
 
     return this.http
-      .post<any>(this.url + "/token", body, { headers: headers })
+      .post<User>(this.url + "/token", body, { headers: headers })
       .pipe(
-        map((user) => {
+        map((reques) => {
+          let user = User.usuarioDesdeJson(reques);
+          console.log(user);
           this.users.push(user);
-          localStorage.setItem(this.usersKey, JSON.stringify(this.users));
           this.userSubject.next(user);
-          this.startRefreshTokenTimer();
+          localStorage.setItem(this.usersKey, JSON.stringify(this.users));
+          //this.startRefreshTokenTimer();
           return user;
         })
       );

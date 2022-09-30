@@ -14,6 +14,7 @@ export class EdificioService {
 
   @Output() change: EventEmitter<Edificio> = new EventEmitter();
   public url: String = `${environment.apiUrl}/operaciones/edificios`;
+
   public getAll() {
     return this.http
       .get<Edificio[]>(this.url + "/", {
@@ -21,8 +22,8 @@ export class EdificioService {
       })
       .pipe(
         map((reques) => {
-          return reques.body.map((edificio) =>
-            Edificio.edificioDesdeJson(edificio)
+          return reques.body.map((tiposalon) =>
+            Edificio.edificioDesdeJson(tiposalon)
           );
         })
       );

@@ -16,8 +16,7 @@ export class AuthenticationService {
   usersKey = "angular-9-jwt-refresh-token-users";
 
   constructor(private router: Router, private http: HttpClient) {
-    const userLoggin = JSON.parse(localStorage.getItem(this.usersKey));
-    this.userSubject = new BehaviorSubject<User>(userLoggin);
+    this.userSubject = new BehaviorSubject<User>(null);
     this.user = this.userSubject.asObservable();
   }
 
@@ -29,7 +28,7 @@ export class AuthenticationService {
     let headers = new HttpHeaders();
     headers = headers.append(
       "Authorization",
-      "Basic " + btoa("frontendapp:12345")
+      "Basic " + btoa(`${environment.clientId}:${environment.clientSecret}`)
     );
     headers = headers.append(
       "Content-Type",
@@ -42,21 +41,14 @@ export class AuthenticationService {
       .set("grant_type", "password");
 
     return this.http
-      .post<any>(this.url + "/token", body, { headers: headers })
+      .post<User>(this.url + "/token", body, { headers: headers })
       .pipe(
-        map((data) => {
-          let user = {
-            id: data.id,
-            username: data.nombre,
-            password: password,
-            firstName: data.nombre,
-            lastName: data.apellido,
-            jwtToken: data.access_token,
-          };
-          this.users.push(user);
+        map((reques) => {
+          let user = User.usuarioDesdeJson(reques);
+          console.log(user);
           this.userSubject.next(user);
-          localStorage.setItem(this.usersKey, JSON.stringify(this.users));
-          this.startRefreshTokenTimer();
+          localStorage.setItem(this.usersKey, JSON.stringify(user));
+          //this.startRefreshTokenTimer();
           return user;
         })
       );
@@ -70,23 +62,40 @@ export class AuthenticationService {
     //     { withCredentials: true }
     //   )
     //   .subscribe();
-    // this.stopRefreshTokenTimer();
-    localStorage.setItem(this.usersKey, null);
+    //this.stopRefreshTokenTimer();
+    localStorage.setItem(this.usersKey, '');
     this.userSubject.next(null);
     this.router.navigate(["/login"]);
   }
 
   refreshToken() {
+    let headers = new HttpHeaders();
+    headers = headers.append(
+      "Authorization",
+      "Basic " + btoa(`${environment.clientId}:${environment.clientSecret}`)
+    );
+    headers = headers.append(
+      "Content-Type",
+      "application/x-www-form-urlencoded"
+    );
+    const  user = JSON.parse(localStorage.getItem(this.usersKey));
+
+    console.log(user.refresh_token);
+    const body = new HttpParams()
+      .set("grant_type", "refresh_token")
+      .set("refresh_token", user.refresh_token);
+
     return this.http
-      .post<any>(
-        `${environment.apiUrl}/users/refresh-token`,
-        {},
-        { withCredentials: true }
-      )
+      .post<User>(this.url + "/token", body, {
+        headers: headers,
+      })
       .pipe(
-        map((user) => {
+        map((obj) => {
+          let user = User.usuarioDesdeJson(obj);
+          console.log(user);
           this.userSubject.next(user);
-          this.startRefreshTokenTimer();
+          //localStorage.setItem(this.usersKey, JSON.stringify(this.user));
+          //this.startRefreshTokenTimer();
           return user;
         })
       );

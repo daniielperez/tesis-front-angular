@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.currentTheme = this.themeService.currentTheme;
 
-    this.user = JSON.parse(localStorage.getItem(this.usersKey))[0];
+    this.user = JSON.parse(localStorage.getItem(this.usersKey));
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService

@@ -84,7 +84,6 @@ export class TipoSalonListComponent implements OnInit, OnDestroy {
   }
 
   onSaveConfirm(event) {
-    console.log(event.newData);
     this.send(event.newData);
     event.confirm.resolve();
   }
