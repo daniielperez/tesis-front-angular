@@ -78,12 +78,16 @@ export class AuthenticationService {
       "Content-Type",
       "application/x-www-form-urlencoded"
     );
-    const  user = JSON.parse(localStorage.getItem(this.usersKey));
 
-    console.log(user.refresh_token);
+    let user = null;
+    if (localStorage.getItem(this.usersKey)) {
+      user = JSON.parse(localStorage.getItem(this.usersKey));
+    }
+
+    // console.log(user?.refresh_token);
     const body = new HttpParams()
       .set("grant_type", "refresh_token")
-      .set("refresh_token", user.refresh_token);
+      .set("refresh_token", user?.refresh_token);
 
     return this.http
       .post<User>(this.url + "/token", body, {
