@@ -19,7 +19,7 @@ export class TipoSalonListComponent implements OnInit, OnDestroy {
   settings = {
     // mode: "external",
     actions: {
-      // add: false,
+      delete: false,
       columnTitle: "Acciones",
       position: "right",
     },
@@ -35,6 +35,7 @@ export class TipoSalonListComponent implements OnInit, OnDestroy {
       editButtonContent: '<i class="nb-edit"></i>',
       confirmSave: true,
     },
+    // delete: false,
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
     },
@@ -79,8 +80,10 @@ export class TipoSalonListComponent implements OnInit, OnDestroy {
   }
 
   onCreateConfirm(event) {
-    this.send(event.newData);
-    event.confirm.resolve();
+    if (event.newData.nombre) {
+      this.send(event.newData);
+      event.confirm.resolve();
+    }
   }
 
   onSaveConfirm(event) {
