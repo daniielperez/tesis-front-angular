@@ -10,7 +10,7 @@
   }
 
   constructor(
-    public codigo: number,
+    public codigo: string,
     public nombre: string,
     public apellido: string,
     public celular: string,

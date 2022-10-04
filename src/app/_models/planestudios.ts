@@ -1,6 +1,6 @@
 ﻿
 export class Planestudios {
-  static PlanestudiosesdeJson(obj: object) {
+  static PlanestudiosDesdeJson(obj: object) {
     return new Planestudios(
       obj["id"],
       obj["nombre"]

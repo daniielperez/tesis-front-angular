@@ -1,8 +1,16 @@
-﻿export interface Espacio {
-  id:number;
-  codigo: number;
-  semestre: number;
-  estado: string;
-  jornada: string;
-  programa: any;
+﻿export class Espacio {
+  static EspacioDesdeJson(obj: object) {
+    return new Espacio(
+      obj["id"],
+      obj["nombre"],
+      obj["semestre"],
+      obj["plan"]
+    );
+  }
+  constructor(
+    public id: number,
+    public nombre: string,
+    public semestre: number,
+    public plan: string
+  ) {}
 }
