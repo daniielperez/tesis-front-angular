@@ -18,4 +18,4 @@
       public celular: string,
       public correo: string
     ) {}
-  }
+  } 
