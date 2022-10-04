@@ -9,7 +9,6 @@
         obj["correo"]
       );
     }
-  
     constructor(
       public id: number,
       public cedula: string,

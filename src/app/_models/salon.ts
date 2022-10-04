@@ -6,20 +6,19 @@
       obj["cupo"],
       obj["dimension"],
       obj["capacidadmaxima"],
-      obj["codDispositivo"],
+      obj["dispositivo"],
       obj["idPiso"],
-      obj["idTipoSalon"]
+      obj["idTiposalon"]
     );
   }
-
   constructor(
     public id: number,
     public nombre: string,
     public cupo: string,
     public dimension: string,
     public capacidadmaxima: string,
-    public codDispositivo: string,
+    public dispositivo: string,
     public idPiso: any,
-    public idTipoSalon: any
+    public idTiposalon: any
   ) {}
 }

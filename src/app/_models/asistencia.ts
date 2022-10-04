@@ -4,16 +4,15 @@
       obj["id"],
       obj["entrada"],
       obj["salida"],
-      obj["estudiante"],
-      obj["sesion"]
+      obj["idEstudiante"],
+      obj["idSesion"]
     );
   }
-
   constructor(
     public id: number,
     public entrada: TimeRanges,
     public salida: TimeRanges,
-    public estudiante: any,
-    public sesion: any
+    public idEstudiante: any,
+    public idSesion: any
   ) {}
 }

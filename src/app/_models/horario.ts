@@ -1,5 +1,4 @@
-﻿
-export class Horario {
+﻿export class Horario {
   static HorarioDesdeJson(obj: object) {
     return new Horario(
       obj["id"],
@@ -8,11 +7,10 @@ export class Horario {
       obj["tclase"],
       obj["urlremota"],
       obj["hfin"],
-      obj["Idcarga"],
-      obj["Idsalon"]
+      obj["idCarga"],
+      obj["idSalon"]
     );
   }
-
   constructor(
     public id: Number,
     public dia: Date,
@@ -20,7 +18,7 @@ export class Horario {
     public tclase: string,
     public urlremota: string,
     public hfin: TimeRanges,
-    public Idcarga: Number,
-    public Idsalon: Number
+    public idCarga: any,
+    public idSalon: any
   ) {}
 }
