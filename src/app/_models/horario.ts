@@ -1,9 +1,10 @@
 ﻿export interface Horario {
   id:number;
-  dia: string;
-  hinicio: string;
+  dia: Date;
+  hinicio: TimeRanges;
   tclase: string;
-  hfin: string;
-  carga: any;
-  salon: any;
+  urlremota: string;
+  hfin: TimeRanges;
+  Idcarga: any;
+  Idsalon: any;
 }

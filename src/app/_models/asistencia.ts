@@ -1,27 +1,19 @@
-﻿export interface Asistencia {
-  id:number;
-  entrada: TimeRanges;
-  salida: TimeRanges;
-  estudiante:any;
-  sesion: any;
-}
-
-export class Asistencia {
-  static AnexoDesdeJson(obj: object) {
-    return new Anexo(
+﻿export class Asistencia {
+  static AsistenciaDesdeJson(obj: object) {
+    return new Asistencia(
       obj["id"],
-      obj["archivo"],
-      obj["fecha"],
-      obj["hora"],
-      obj["falta"]
+      obj["entrada"],
+      obj["salida"],
+      obj["estudiante"],
+      obj["sesion"]
     );
   }
 
   constructor(
     public id: number,
-    public archivo: string,
-    public fecha: Date,
-    public hora: TimeRanges,
-    public falta: any
+    public entrada: TimeRanges,
+    public salida: TimeRanges,
+    public estudiante: any,
+    public sesion: any
   ) {}
 }
