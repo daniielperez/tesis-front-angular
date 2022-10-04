@@ -5,9 +5,9 @@
       obj["nombre"],
       obj["cupo"],
       obj["dimension"],
+      obj["capacidadmaxima"],
       obj["codDispositivo"],
       obj["idPiso"],
-      obj["nomTipoSalon"],
       obj["idTipoSalon"]
     );
   }
@@ -17,9 +17,9 @@
     public nombre: string,
     public cupo: string,
     public dimension: string,
+    public capacidadmaxima: string,
     public codDispositivo: string,
     public idPiso: any,
-    public nomTipoSalon: any,
     public idTipoSalon: any
   ) {}
 }
