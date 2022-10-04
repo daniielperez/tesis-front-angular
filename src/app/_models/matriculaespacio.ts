@@ -12,7 +12,7 @@
   constructor(
     public id: Number,
     public fecha: Date,
-    public semestre: TimeRanges,
+    public semestre: number,
     public idEstudiante: any,
     public idEspacio: any,
     public idCarga: any,
