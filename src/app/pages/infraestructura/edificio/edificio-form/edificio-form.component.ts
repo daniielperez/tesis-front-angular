@@ -28,9 +28,9 @@ export class EdificioFormComponent implements OnInit {
   }
   onSubmit() {
     if (this.form.status == "VALID") {
-      if (window.confirm("¿Confirmar envio?")) {
-        this.ref.close(this.form);
-      }
+      // if (window.confirm("¿Confirmar envio?")) {
+      this.ref.close(this.form);
+      // }
     }
   }
 }
