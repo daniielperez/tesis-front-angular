@@ -7,7 +7,7 @@
       obj["celular"],
       obj["correo"]
     );
-  }
+  } 
 
   constructor(
     public codigo: number,
