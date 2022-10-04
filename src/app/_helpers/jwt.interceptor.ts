@@ -4,15 +4,21 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 
 import { environment } from "../../environments/environment";
 import { AuthenticationService } from "../_services";
+import { catchError } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -29,5 +35,13 @@ export class JwtInterceptor implements HttpInterceptor {
       });
     }
     return next.handle(request);
+  }
+
+  menejarError(err: any) {
+    if (err == "Forbidden") {
+      //alert("permiso denegado");
+      this.router.navigateByUrl("/auth/login");
+    }
+    return throwError(err);
   }
 }

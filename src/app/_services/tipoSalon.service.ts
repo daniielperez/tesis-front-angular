@@ -2,8 +2,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { environment } from "../../environments/environment";
-import { map } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 import { TipoSalon, Select } from "../_models";
+import { throwError } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -19,6 +20,7 @@ export class TipoSalonService {
       })
       .pipe(
         map((reques) => {
+          console.log(reques.status);
           return reques.body.map((tiposalon) =>
             TipoSalon.TipoSalonDesdeJson(tiposalon)
           );
@@ -34,7 +36,6 @@ export class TipoSalonService {
       })
       .pipe(
         map((reques) => {
-          console.log("#$$$$$$$$$$$$");
           console.log(reques);
           return reques;
         })

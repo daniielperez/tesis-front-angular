@@ -63,7 +63,21 @@ export class AuthenticationService {
     //   )
     //   .subscribe();
     //this.stopRefreshTokenTimer();
-    localStorage.setItem(this.usersKey, '');
+    localStorage.setItem(this.usersKey, "");
+    this.userSubject.next(null);
+    this.router.navigate(["/login"]);
+  }
+
+  permissions() {
+    // this.http
+    //   .post<any>(
+    //     `${environment.apiUrl}/users/revoke-token`,
+    //     {},
+    //     { withCredentials: true }
+    //   )
+    //   .subscribe();
+    //this.stopRefreshTokenTimer();
+    localStorage.setItem(this.usersKey, "");
     this.userSubject.next(null);
     this.router.navigate(["/login"]);
   }
