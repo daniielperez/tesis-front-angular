@@ -3,7 +3,7 @@
     return new Bloque(obj["id"], obj["nombre"], obj["idEdificio"]);
   }
   static bloqueSelectDesdeJson(obj: object) {
-    return new Bloque(obj["id"], obj["name"], obj["idEdificio"]);
+    return new Bloque(obj["id"], obj["nombre"], obj["idEdificio"]);
   }
   constructor(
     public id: number,
