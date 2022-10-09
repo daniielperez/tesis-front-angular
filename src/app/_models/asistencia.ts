@@ -4,7 +4,7 @@
       obj["id"],
       obj["entrada"],
       obj["salida"],
-      obj["idEstudiante"],
+      obj["idPersona"],
       obj["idSesion"]
     );
   }
@@ -12,7 +12,7 @@
     public id: number,
     public entrada: TimeRanges,
     public salida: TimeRanges,
-    public idEstudiante: any,
+    public idPersona: any,
     public idSesion: any
   ) {}
 }

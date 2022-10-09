@@ -1,6 +1,6 @@
-﻿  export class Estudiante {
+﻿  export class Persona {
     static EstudianteDesdeJson(obj: object) {
-      return new Estudiante(
+      return new Persona(
         obj["id"],
         obj["cedula"],
         obj["nombre"],

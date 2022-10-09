@@ -6,7 +6,7 @@
       obj["grupo"],
       obj["jornada"],
       obj["intensidad"],
-      obj["idDocente"],
+      obj["idPersona"],
       obj["idEspacio"]
     );
   }
@@ -16,7 +16,7 @@
     public grupo: string,
     public jornada: string,
     public intensidad: string,
-    public idDocente: any,
+    public idPersona: any,
     public idEspacio: any
   ) {}
 }
