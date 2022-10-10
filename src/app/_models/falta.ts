@@ -5,7 +5,7 @@
       obj["descripcion"],
       obj["verificacion"],
       obj["idSesion"],
-      obj["idEstudiante"],
+      obj["idPersona"],
     );
   }
   constructor(
@@ -13,6 +13,6 @@
     public descripcion: string,
     public verificacion: string,
     public idSesion: any,
-    public idEstudiante: any
+    public idPersona: any
   ) {}
 }

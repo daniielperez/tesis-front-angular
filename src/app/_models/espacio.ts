@@ -11,6 +11,6 @@
     public id: number,
     public nombre: string,
     public semestre: number,
-    public idPlanestudio: string
+    public idPlanestudio: any
   ) {}
 }

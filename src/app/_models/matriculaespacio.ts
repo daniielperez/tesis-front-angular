@@ -4,7 +4,7 @@
       obj["id"],
       obj["fecha"],
       obj["semestre"],
-      obj["idEstudiante"],
+      obj["idPersona"],
       obj["idEspacio"],
       obj["idCarga"]
     );
@@ -13,9 +13,8 @@
     public id: Number,
     public fecha: Date,
     public semestre: number,
-    public idEstudiante: any,
+    public idPersona: any,
     public idEspacio: any,
-    public idCarga: any,
-   
+    public idCarga: any
   ) {}
 }
