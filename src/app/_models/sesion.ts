@@ -3,10 +3,10 @@
     return new Sesion(
       obj["id"],
       obj["fechain"],
-      obj["horaen"],
-      obj["horasa"],
+      obj["hentrada"],
+      obj["hsalida"],
       obj["novedad"],
-      obj["expedicion"],
+      obj["expira"],
       obj["tipclase"],
       obj["url"],
       obj["idSalon"]
@@ -15,10 +15,10 @@
   constructor(
     public id: number,
     public fechain: Date,
-    public horaen: TimeRanges,
-    public horasa: TimeRanges,
+    public hentrada: TimeRanges,
+    public hsalida: TimeRanges,
     public novedad: string,
-    public expedicion: number,
+    public expira: number,
     public tipclase: string,
     public url: string,
     public idSalon: any

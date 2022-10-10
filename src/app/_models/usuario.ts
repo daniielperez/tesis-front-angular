@@ -12,7 +12,7 @@ export class User {
   static usuarioDesdeJson(obj: object) {
     return new User(
       obj["id"],
-      obj["nombre"],
+      obj["usuario"],
       obj["password"],
       obj["nombre"],
       obj["apellido"],
