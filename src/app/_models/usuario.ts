@@ -1,4 +1,4 @@
-﻿// export class User {
+﻿// export class Usuario {
 //     id: number;
 //     username: string;
 //     password: string;
@@ -8,11 +8,11 @@
 //     jwtToken?: string;
 // }
 
-export class User {
+export class Usuario {
   static usuarioDesdeJson(obj: object) {
-    return new User(
+    return new Usuario(
       obj["id"],
-      obj["usuario"],
+      obj["username"],
       obj["password"],
       obj["nombre"],
       obj["apellido"],

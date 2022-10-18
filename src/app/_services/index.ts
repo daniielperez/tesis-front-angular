@@ -6,3 +6,4 @@ export * from "./bloque.service";
 export * from "./piso.service";
 export * from "./tipoSalon.service";
 export * from "./salon.service";
+export * from "./solicitud.service";

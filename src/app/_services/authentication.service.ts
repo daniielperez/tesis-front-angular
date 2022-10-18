@@ -5,22 +5,22 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
 import { environment } from "../../environments/environment";
-import { User } from "../_models";
+import { Usuario } from "../_models";
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationService {
   public url: String = `${environment.apiUrl}/security/oauth`;
-  private userSubject: BehaviorSubject<User>;
-  public user: Observable<User>;
+  private userSubject: BehaviorSubject<Usuario>;
+  public user: Observable<Usuario>;
   users = [];
   usersKey = "angular-9-jwt-refresh-token-users";
 
   constructor(private router: Router, private http: HttpClient) {
-    this.userSubject = new BehaviorSubject<User>(null);
+    this.userSubject = new BehaviorSubject<Usuario>(null);
     this.user = this.userSubject.asObservable();
   }
 
-  public get userValue(): User {
+  public get userValue(): Usuario {
     return this.userSubject.value;
   }
 
@@ -41,10 +41,10 @@ export class AuthenticationService {
       .set("grant_type", "password");
 
     return this.http
-      .post<User>(this.url + "/token", body, { headers: headers })
+      .post<Usuario>(this.url + "/token", body, { headers: headers })
       .pipe(
         map((reques) => {
-          let user = User.usuarioDesdeJson(reques);
+          let user = Usuario.usuarioDesdeJson(reques);
           console.log(user);
           this.userSubject.next(user);
           localStorage.setItem(this.usersKey, JSON.stringify(user));
@@ -104,12 +104,12 @@ export class AuthenticationService {
       .set("refresh_token", user?.refresh_token);
 
     return this.http
-      .post<User>(this.url + "/token", body, {
+      .post<Usuario>(this.url + "/token", body, {
         headers: headers,
       })
       .pipe(
         map((obj) => {
-          let user = User.usuarioDesdeJson(obj);
+          let user = Usuario.usuarioDesdeJson(obj);
           console.log(user);
           this.userSubject.next(user);
           //localStorage.setItem(this.usersKey, JSON.stringify(this.user));

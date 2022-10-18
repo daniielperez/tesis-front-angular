@@ -30,6 +30,14 @@ const routes: Routes = [
       },
 
       {
+        path: "administracion",
+        loadChildren: () =>
+          import("./administracion/administracion.module").then(
+            (m) => m.AdministracionModule
+          ),
+      },
+
+      {
         path: "",
         redirectTo: "dashboard",
         pathMatch: "full",

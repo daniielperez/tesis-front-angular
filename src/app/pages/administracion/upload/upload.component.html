@@ -1,0 +1,140 @@
+<div class="lists row">
+    <div class="col-md-12 col-lg-6 col-xxxl-6 " >
+        <div style="padding: 2px;">
+            <div
+                class="dropzone"
+                fileDragDrop
+                (filesChangeEmiter)="onFileChange($event)"
+            >
+                <div class="text-wrapper text-center">
+                <div class="centered">
+                    <input
+                    type="file"
+                    accept=".xlsx"
+                    name="file"
+                    id="file"
+                    (change)="onFileChange($event.target.files)"
+                    
+                    />
+                    <div class="container" *ngIf="upload">
+                        <h3>Estamos trabajando</h3>
+                        <p>Subeindo informacion...</p>
+                        <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                   <div class="container" *ngIf="!upload">
+                    <!-- <img src="assets/skins/lightgray/fonts/upload.svg " alt="My Happy SVG" /> -->
+                    <label for="file">
+                        <span class="textLink">Cargar</span> o soltar aquí!
+                    </label>
+                   </div>
+                    
+                
+                </div>
+            </div>
+            <hr />
+            </div>
+            <nb-card class="container">
+                <nb-list>
+                    <nb-list-item *ngIf="solicitudUpload" > 
+                        <div class="container row text-center" >
+                            <div class="col-lg-2 col-2 d-none d-lg-block">
+                                <img src="assets/skins/lightgray/fonts/excel.svg "alt="My Happy SVG" />
+                            </div>
+                            <div  class="col-5 col-lg-3 col-2 d-none d-lg-block" >
+                                <nb-user [name]="solicitudUpload.username" title="Usuario"> </nb-user>
+                            </div>
+                            <div class="col-7 col-lg-4">
+                                {{ solicitudUpload.nomArchivo }} <br>
+                                <!-- {{ solicitudUpload.hora }} -->
+                            </div>
+                            <div class="col-5 col-lg-3" >
+                                Estado <br>
+                                <p >
+                                    {{ solicitudUpload.estado }}
+                                </p>
+                            </div>
+                        </div>
+                <!-- <nb-icon icon="archive" pack="fa"></nb-icon> -->
+                    </nb-list-item>
+                    <nb-list-item *ngIf="solicitudStateUpload" > 
+                        <div class="container row text-center" >
+                            <div class="col-lg-2 col-2 d-none d-lg-block">
+                                <img src="assets/skins/lightgray/fonts/excel.svg "alt="My Happy SVG" />
+                            </div>
+                            <div  class="col-5 col-lg-3 col-2 d-none d-lg-block" >
+                                <nb-user [name]="solicitudStateUpload.username" title="Usuario"> </nb-user>
+                                {{ solicitudStateUpload.valid }}
+                            </div>
+                            <div class="col-7 col-lg-4">
+                                {{ solicitudStateUpload.nomArchivo }} <br>
+                                {{ solicitudStateUpload.fechaInicio }}
+                                <!-- <div class="clock">
+                                    <div class="hours">
+                                        <div class="horas">
+                                            <span class="mishoras">{{hora}}:{{minutos}}.{{segundos}}</span>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="col-5 col-lg-3" >
+                                Estado <br>
+                                <p >
+                                    {{ solicitudStateUpload.estado }}
+                                </p>
+                            </div>
+                        </div>
+                <!-- <nb-icon icon="archive" pack="fa"></nb-icon> -->
+                    </nb-list-item>
+                </nb-list>
+                <div class="container row divPadre" *ngIf="solicitudUpload" style="margin-top: 15px; margin-bottom: 15px;">
+                    <div class="divHijo">
+                        <button
+                            type="button"
+                            class="cancel col-md-5"
+                            nbButton
+                            status="basic"
+                            (click)="deleteFromArray()"
+                        >
+                            Cancel
+                        </button>
+                        <button nbButton status="warning" (click)="onSubmit()"  class="button-them col-md-5" >Submit</button>
+                    </div>
+                </div>
+            </nb-card>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-6 col-xxxl-6">
+        <nb-card class="list-card" size="small">
+            <nb-card-header>Solicitudes</nb-card-header>
+            <nb-card-body>
+                <nb-list>
+                    <nb-list-item *ngFor="let solicitud of solicitudesUpload" [nbSpinner]="solicitud.load" nbSpinnerSize="large" nbSpinnerStatus="primary"> 
+                        <div class="container row text-center" >
+                            <div class="col-lg-2 col-2 d-none d-lg-block">
+                                <img src="assets/skins/lightgray/fonts/excel.svg "alt="My Happy SVG" />
+                            120
+
+                            </div>
+                            <div  class="col-5 col-lg-3 col-2 d-none d-lg-block" >
+                                <nb-user [name]="solicitud.username" title="Usuario"> </nb-user>
+                            </div>
+                            <div class="col-7 col-lg-4">
+                                {{ solicitud.nomArchivo }} <br>
+                                {{ solicitud.fechaInicio }}
+                            </div>
+                            <div class="col-5 col-lg-3" >
+                                Estado <br>
+                                <p >
+                                    {{ solicitud.estado }}
+                                </p>
+                            </div>
+                        </div>
+                <!-- <nb-icon icon="archive" pack="fa"></nb-icon> -->
+                    </nb-list-item>
+                </nb-list>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>    

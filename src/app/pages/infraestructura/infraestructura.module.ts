@@ -44,7 +44,12 @@ import { TipoSalonListComponent } from "./tipoSalon/tipoSalon-list.component";
 const COMPONENTS = [
   CustomEditorComponent,
   SalonFormComponent,
+  IndexComponent,
   EdificioFormComponent,
+  EdificioListComponent,
+  SalonListComponent,
+  BloqueFormComponent,
+  TipoSalonListComponent,
 ];
 
 const MODULES = [
@@ -79,15 +84,6 @@ const MODULES = [
   imports: [...MODULES],
   entryComponents: [CustomEditorComponent],
   exports: [...COMPONENTS],
-  declarations: [
-    ...routedComponents,
-    ...COMPONENTS,
-    IndexComponent,
-    EdificioFormComponent,
-    EdificioListComponent,
-    SalonListComponent,
-    BloqueFormComponent,
-    TipoSalonListComponent,
-  ],
+  declarations: [...routedComponents, ...COMPONENTS],
 })
 export class InfraestructuraModule {}
