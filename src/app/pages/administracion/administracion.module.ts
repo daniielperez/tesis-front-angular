@@ -11,15 +11,22 @@ import {
   NbCardModule,
   NbIconModule,
   NbListModule,
-  NbPopoverModule,
-  NbSearchModule,
+  // NbPopoverModule,
+  // NbSearchModule,
+  NbBadgeModule,
   NbSpinnerModule,
   NbUserModule,
 } from "@nebular/theme";
 import { ThemeModule } from "../../@theme/theme.module";
 import { FileDragNDropDirective } from "../../directive/file-drag-n-drop.directive";
+import { ListErrorUploadComponent } from "./list-error-upload/list-error-upload.component";
+import { Ng2SmartTableModule } from "ng2-smart-table";
 
-const COMPONENTS = [UploadComponent, FileDragNDropDirective];
+const COMPONENTS = [
+  UploadComponent,
+  FileDragNDropDirective,
+  ListErrorUploadComponent,
+];
 
 const MODULES = [
   AdministracionRoutingModule,
@@ -33,12 +40,18 @@ const MODULES = [
   NbIconModule,
   NbSpinnerModule,
   NbButtonModule,
+  Ng2SmartTableModule,
+  NbBadgeModule,
 ];
 
 @NgModule({
   imports: [...MODULES],
   // entryComponents: [CustomEditorComponent],
   exports: [...COMPONENTS],
-  declarations: [...routedAdminComponents, ...COMPONENTS],
+  declarations: [
+    ...routedAdminComponents,
+    ...COMPONENTS,
+    ListErrorUploadComponent,
+  ],
 })
 export class AdministracionModule {}

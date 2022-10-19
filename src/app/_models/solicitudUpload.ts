@@ -6,7 +6,8 @@
       obj["nomArchivo"],
       obj["numValid"],
       obj["estado"],
-      obj["fechaInicio"]
+      obj["fechaInicio"],
+      obj["tiempo"]
     );
   }
 
@@ -16,6 +17,7 @@
     public nomArchivo: any,
     public numValid: any,
     public estado: any,
-    public fechaInicio: any
+    public fechaInicio: any,
+    public tiempo: any
   ) {}
 }
