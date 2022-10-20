@@ -38,7 +38,6 @@ export class SolicitudService {
       })
       .pipe(
         map((reques: any) => {
-          console.log(reques);
           return reques.body._embedded.solicituds.map((solicitud) =>
             SolicitudUpload.solicitudUploadToJson(solicitud)
           );

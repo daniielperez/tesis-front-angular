@@ -22,6 +22,7 @@ export class EdificioService {
       })
       .pipe(
         map((reques) => {
+          console.log(reques);
           return reques.body.map((tiposalon) =>
             Edificio.edificioDesdeJson(tiposalon)
           );

@@ -39,6 +39,7 @@ export class EdificioListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: Edificio[]) => {
         this.edificios = res;
+        console.log(this.edificios);
         this.loading = false;
       });
   }

@@ -14,14 +14,14 @@ import {
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { respuestaUpload, SolicitudUpload } from "../../../_models";
-import { SolicitudService } from "../../../_services";
+import { SolicitudService, WebSocketService } from "../../../_services";
 // import { valorReloj, XsegundoService } from "../../../_services/reloj.service";
 
 @Component({
   selector: "ngx-upload",
   templateUrl: "./upload.component.html",
   styleUrls: ["./upload.component.scss"],
-  // providers: [XsegundoService],
+  providers: [WebSocketService],
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class UploadComponent implements OnInit, OnDestroy {
@@ -31,6 +31,9 @@ export class UploadComponent implements OnInit, OnDestroy {
   public isErrors: boolean;
   public load: boolean = false;
   index = 1;
+  user: any;
+  usersKey = "angular-9-jwt-refresh-token-users";
+  stompClient;
   destroy$: Subject<boolean> = new Subject<boolean>();
   // hora: number;
   // minutos: number;
@@ -47,12 +50,27 @@ export class UploadComponent implements OnInit, OnDestroy {
     private datePipe: DatePipe,
     iconsLibrary: NbIconLibraries,
     private toastrService: NbToastrService,
-
+    private webSocketService: WebSocketService,
     public _solicitudService: SolicitudService
   ) {
     iconsLibrary.registerFontPack("fa", {
       packClass: "fa",
       iconClassPrefix: "fa",
+    });
+
+    this.user = JSON.parse(localStorage.getItem(this.usersKey));
+    console.log(this.user);
+    this.stompClient = this.webSocketService.connect();
+
+    this.stompClient.connect({}, (frame) => {
+      this.stompClient.subscribe("/topic/upload-finish", (request) => {
+        this.ngOnInit();
+      });
+      this.stompClient.send(
+        "/app/chat.addUser",
+        {},
+        JSON.stringify({ sender: this.user.username, type: "JOIN" })
+      );
     });
   }
 
@@ -64,7 +82,6 @@ export class UploadComponent implements OnInit, OnDestroy {
       .getByTipo("USUARIOS")
       .pipe(takeUntil(this.destroy$))
       .subscribe((request) => {
-        console.log(request);
         this.solicitudesUpload = request;
         this.solicitudStateUpload = this.solicitudesUpload.find(
           (p) => p.estado == "Procesando"
@@ -72,7 +89,6 @@ export class UploadComponent implements OnInit, OnDestroy {
         this.solicitudesUpload = this.solicitudesUpload.filter(
           (item) => item !== this.solicitudStateUpload
         );
-        console.log(this.solicitudesUpload);
         this.upload = this.solicitudStateUpload ? true : false;
       });
     // if (this.solicitudStateUpload) {
@@ -92,7 +108,7 @@ export class UploadComponent implements OnInit, OnDestroy {
 
     this.solicitudUpload = {
       id: "null",
-      username: "12314",
+      username: this.user.username,
       nomArchivo: this.files[0].name,
       numValid: "null",
       estado: "listo para validar",
@@ -113,6 +129,7 @@ export class UploadComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.webSocketService.disconnect(this.stompClient);
     this.destroy$.next(true);
     // Unsubscribe from the subject
     this.destroy$.unsubscribe();

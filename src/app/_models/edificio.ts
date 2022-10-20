@@ -1,12 +1,12 @@
 ﻿export class Edificio {
   static edificioDesdeJson(obj: object) {
-    return new Edificio(obj["id"], obj["nombre"], obj["idSede"]);
+    return new Edificio(obj["id"], obj["nombre"], obj["direccion"]);
   }
 
   constructor(
     public id: number,
     public nombre: string,
-    public idSede: any
+    public direccion: string
   ) {}
 
   get fullName() {

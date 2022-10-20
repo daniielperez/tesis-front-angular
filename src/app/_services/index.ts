@@ -1,5 +1,6 @@
 ﻿export * from "./authentication.service";
 export * from "./user.service";
+export * from "./websocket.service";
 export * from "./edificio.service";
 export * from "./form.service";
 export * from "./bloque.service";
