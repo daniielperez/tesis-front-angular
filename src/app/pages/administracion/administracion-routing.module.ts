@@ -1,6 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { PlanEstudio } from "../../_models";
 import { AdministracionComponent } from "./administracion.component";
+import { EspacioListComponent } from "./espacio/espacio-list/espacio-list.component";
+import { PlanEstudioListComponent } from "./planEstudio/planEstudio-list/planEstudio-list.component";
+import { ProgramaComponent } from "./programa/programa.component";
 import { UploadComponent } from "./upload/upload.component";
 
 const routes: Routes = [
@@ -11,6 +15,18 @@ const routes: Routes = [
       {
         path: "subir-archivo",
         component: UploadComponent,
+      },
+      {
+        path: "programa",
+        component: ProgramaComponent,
+      },
+      {
+        path: "plan-estudios",
+        component: PlanEstudioListComponent,
+      },
+      {
+        path: "espacio-academicos",
+        component: EspacioListComponent,
       },
     ],
   },

@@ -1,0 +1,13 @@
+<nb-card [nbSpinner]="load">
+  <nb-card-header> Espacios académicos </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (edit)="onEdit($event)"
+      (create)="onCreate()"
+      (delete)="onDeleteConfirm($event)"
+    >
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

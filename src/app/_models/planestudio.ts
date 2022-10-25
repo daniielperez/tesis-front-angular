@@ -1,15 +1,16 @@
-﻿export class Planestudio {
-  static PlanestudioDesdeJson(obj: object) {
-    return new Planestudio(
+﻿export class PlanEstudio {
+  static PlanEstudioDesdeJson(obj: object) {
+    return new PlanEstudio(
       obj["id"],
       obj["nombre"],
-      obj["idPrograma"]
+      obj["programa"]["nombre"],
+      obj["programa"]
     );
   }
   constructor(
     public id: number,
     public nombre: string,
-    public idPrograma: any
-    
+    public nombrePrograma: any,
+    public programa: any
   ) {}
 }

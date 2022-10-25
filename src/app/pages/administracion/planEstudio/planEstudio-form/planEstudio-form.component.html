@@ -1,8 +1,30 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form" aria-labelledby="title">
   <nb-card>
-    <nb-card-header>Nuevo bloque</nb-card-header>
+    <nb-card-header>plan estudio</nb-card-header>
     <nb-card-body>
       <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <br />
+            <span class="label-with-link">
+              <ng-select
+                [items]="selectProgramas"
+                formControlName="idPrograma"
+                id="idPrograma"
+                bindLabel="name"
+                bindValue="id"
+                placeholder="Programa:"
+              >
+              </ng-select>
+              <ng-container *ngIf="f.idPrograma.invalid && f.idPrograma.touched">
+                <app-form-errors
+                  [control]="f.idPrograma"
+                  campo="Programa"
+                ></app-form-errors>
+              </ng-container>
+            </span>
+          </div>
+        </div>
         <div class="col-sm-12">
           <div class="form-group">
             <label class="label" for="input-nombre">Nombre:</label>
@@ -31,6 +53,7 @@
             </ng-container>
           </div>
         </div>
+       
       </div>
     </nb-card-body>
     <nb-card-footer>

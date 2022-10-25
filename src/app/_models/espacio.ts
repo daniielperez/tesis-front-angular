@@ -4,13 +4,15 @@
       obj["id"],
       obj["nombre"],
       obj["semestre"],
-      obj["idPlanestudio"]
+      obj["planEstudio"]["nombre"],
+      obj["planEstudio"]
     );
   }
   constructor(
     public id: number,
     public nombre: string,
     public semestre: number,
-    public idPlanestudio: any
+    public nombrePlanEstudio: any,
+    public planEstudio: any
   ) {}
 }

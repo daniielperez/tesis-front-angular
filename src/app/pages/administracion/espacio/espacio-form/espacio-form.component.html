@@ -1,0 +1,100 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" aria-labelledby="title">
+  <nb-card>
+    <nb-card-header>plan estudio</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <br />
+            <span class="label-with-link">
+              <ng-select
+                [items]="selectPlanEstudios"
+                formControlName="idPlanEstudio"
+                id="idPlanEstudio"
+                bindLabel="name"
+                bindValue="id" 
+                placeholder="PlanEstudio:"
+              >
+              </ng-select>
+              <ng-container *ngIf="f.idPlanEstudio.invalid && f.idPlanEstudio.touched">
+                <app-form-errors
+                  [control]="f.idPlanEstudio"
+                  campo="PlanEstudio"
+                ></app-form-errors>
+              </ng-container>
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="label" for="input-semestre">Semestre:</label>
+            <input
+              nbInput
+              fullWidth
+              id="input-semestre"
+              placeholder="Semestre del campo"
+              formControlName="semestre"
+              [status]="
+                f.semestre.dirty
+                  ? f.semestre.invalid
+                    ? 'danger'
+                    : 'success'
+                  : 'basic'
+              "
+              [attr.aria-invalid]="
+                f.semestre.invalid && f.semestre.touched ? true : null
+              "
+            />
+            <ng-container *ngIf="f.semestre.invalid && f.semestre.touched">
+              <app-form-errors
+                [control]="f.semestre"
+                campo="semestre"
+              ></app-form-errors>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="label" for="input-nombre">Nombre:</label>
+            <input
+              nbInput
+              fullWidth
+              id="input-nombre"
+              placeholder="Nombre del campo"
+              formControlName="nombre"
+              [status]="
+                f.nombre.dirty
+                  ? f.nombre.invalid
+                    ? 'danger'
+                    : 'success'
+                  : 'basic'
+              "
+              [attr.aria-invalid]="
+                f.nombre.invalid && f.nombre.touched ? true : null
+              "
+            />
+            <ng-container *ngIf="f.nombre.invalid && f.nombre.touched">
+              <app-form-errors
+                [control]="f.nombre"
+                campo="email"
+              ></app-form-errors>
+            </ng-container>
+          </div>
+        </div>
+        
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        type="button"
+        class="cancel"
+        (click)="cancel()"
+        nbButton
+        status="basic"
+      >
+        Cancelar
+      </button>
+      <button nbButton status="warning" class="button-them">Enviar</button>
+    </nb-card-footer>
+  </nb-card>
+</form>

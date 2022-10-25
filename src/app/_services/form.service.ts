@@ -31,6 +31,13 @@ export class FormService {
       direccion: [d?.direccion],
     });
   }
+  newFormPlanEstudio(d?) {
+    return this.formBuilder.group({
+      id: [d?.id],
+      nombre: [d?.nombre, [Validators.required]],
+      idPrograma: [d?.programa.id, [Validators.required]],
+    });
+  }
   newFormBloque(d?) {
     return this.formBuilder.group({
       id: [d?.id],
@@ -47,7 +54,6 @@ export class FormService {
     });
   }
   newFormSalon(d?) {
-    
     return this.formBuilder.group({
       id: [d?.id],
       nombre: [d?.nombre, [Validators.required]],
@@ -195,11 +201,9 @@ export class FormService {
   newFormEspacio(d?) {
     return this.formBuilder.group({
       id: [d?.id],
-      codigo: [d?.codigo, [Validators.required]],
-      semestre: [d?.correo, [Validators.required]],
-      estado: [d?.estado, [Validators.required]],
-      jornada: [d?.jornada, [Validators.required]],
-      programa: [d?.programa, [Validators.required]],
+      semestre: [d?.semestre, [Validators.required]],
+      nombre: [d?.nombre, [Validators.required]],
+      idPlanEstudio: [d?.planEstudio.id, [Validators.required]],
     });
   }
   newFormPrograma(d?) {

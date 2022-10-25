@@ -35,13 +35,32 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
 
   {
-    title: "Edificios",
+    title: "Administracion",
     icon: "grid-outline",
     children: [
       {
-        title: "Administracion",
+        title: "Cargar datos",
         link: "/pages/administracion/subir-archivo",
       },
+      {
+        title: "Programas",
+        link: "/pages/administracion/programa",
+      },
+      {
+        title: "Plan Estudios",
+        link: "/pages/administracion/plan-estudios",
+      },
+      {
+        title: "Espacios academicos",
+        link: "/pages/administracion/espacio-academicos",
+      },
+    ],
+  },
+
+  {
+    title: "Edificios",
+    icon: "grid-outline",
+    children: [
       {
         title: "Infraestructura",
         link: "/pages/infraestructura/index",

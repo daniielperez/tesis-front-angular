@@ -1,4 +1,6 @@
 ﻿export * from "./usuario";
+export * from "./planEstudio";
+export * from "./programa";
 export * from "./select";
 export * from "./edificio";
 export * from "./solicitudUpload";
@@ -8,3 +10,4 @@ export * from "./piso";
 export * from "./bloque";
 export * from "./tipoSalon";
 export * from "./salon";
+export * from "./espacio";
