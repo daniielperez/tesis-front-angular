@@ -1,0 +1,18 @@
+<div class="lists row">
+    <div class="col-12">
+        <nb-tabset fullWidth  (changeTab)="onChangeTab($event)">
+            <nb-tab tabTitle="personas" class="row"  >
+              <br>
+              <ngx-upload tipo="USUARIOS" [stompClient]="stompClient" titulo="personas" *ngIf="tipo == 'personas'"></ngx-upload>
+            </nb-tab>
+            <nb-tab tabTitle="espacios academicos" class="row" >
+              <br>
+              <ngx-upload tipo="CARGAS_ACADEMICAS" [stompClient]="stompClient" titulo="cargas academicas" *ngIf="tipo == 'espacios academicos'"></ngx-upload>
+            </nb-tab>
+            <nb-tab tabTitle="matriculas" class="row" >
+              <br>
+              <ngx-upload tipo="MATRICULA" [stompClient]="stompClient" titulo="matriculas" *ngIf="tipo == 'matriculas'"></ngx-upload>
+            </nb-tab>
+        </nb-tabset>
+    </div>
+</div>    

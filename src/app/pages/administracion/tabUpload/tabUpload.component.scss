@@ -1,0 +1,76 @@
+@import '../../../@theme/styles/themes';
+
+
+@include nb-install-component() {
+    .list-card {
+        nb-card-header {
+            border-bottom: none;
+        }
+
+        nb-card-body {
+            padding: 0;
+        }
+    }
+
+    .nb-theme-default nb-spinner.status-primary {
+        background-color: white;
+    }
+
+    h3,
+    h4,
+    p {
+        font-family: Roboto, Arial, sans-serif;
+    }
+
+    .text-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .centered {
+        font-family: sans-serif;
+        font-size: 1.3em;
+        text-align: center;
+    }
+
+    .dropzone {
+        margin: 0px !important;
+        height: 155px;
+        display: table;
+        width: 100%;
+        background-color: nb-theme(color-primary-disabled) !important;
+        border: none !important;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .textLink {
+        background-color: #f45e61;
+        color: #fff;
+        padding: 10px;
+        border: none !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .textLink::before {
+        content: "\f093";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        color: #fff;
+        font-size: large;
+        margin-right: 10px;
+    }
+
+    .divPadre {
+        height: 100%;
+        text-align: center;
+    }
+
+    .divHijo {
+        height: auto;
+        width: 400px;
+        margin: 0px auto;
+    }
+}

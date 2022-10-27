@@ -11,10 +11,10 @@ export class SolicitudService {
 
   constructor(private http: HttpClient) {}
 
-  insert(SolicitudUpload: any) {
+  insert(SolicitudUpload: any, endPoint: String) {
     return this.http
       .post<respuestaUpload>(
-        this.url + "excel/upload/personas/excel",
+        this.url + `excel/upload/${endPoint}/excel`,
         SolicitudUpload,
         {
           observe: "response",

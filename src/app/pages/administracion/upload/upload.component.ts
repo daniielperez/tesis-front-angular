@@ -2,6 +2,7 @@ import { DatePipe } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
+  Input,
   OnDestroy,
   OnInit,
 } from "@angular/core";
@@ -25,6 +26,8 @@ import { SolicitudService, WebSocketService } from "../../../_services";
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class UploadComponent implements OnInit, OnDestroy {
+  @Input() tipo: string;
+  @Input() titulo: string;
   public solicitudUpload: SolicitudUpload;
   public solicitud: SolicitudUpload;
   public respuestaUpload: respuestaUpload;
@@ -79,7 +82,7 @@ export class UploadComponent implements OnInit, OnDestroy {
     this.solicitudStateUpload = null;
     this.solicitudUpload = null;
     this._solicitudService
-      .getByTipo("USUARIOS")
+      .getByTipo(this.tipo)
       .pipe(takeUntil(this.destroy$))
       .subscribe((request) => {
         this.solicitudesUpload = request;
@@ -142,14 +145,30 @@ export class UploadComponent implements OnInit, OnDestroy {
     let fd = new FormData();
     fd.append("file", this.files[0]);
     fd.append("solicitud", JSON.stringify(this.solicitudUpload));
+    switch (this.tipo) {
+      case "USUARIOS":
+        this.insertCallService(fd, "personas");
+        break;
+      case "CARGAS_ACADEMICAS":
+        this.insertCallService(fd, "cargas-academicas");
+        break;
+      case "MATRICULA":
+        this.insertCallService(fd, "matricula");
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  insertCallService(fd: FormData, endPoint: String) {
     this._solicitudService
-      .insert(fd)
+      .insert(fd, endPoint)
       .pipe(takeUntil(this.destroy$))
       .subscribe((request) => {
         this.load = false;
         if (request.status == 200) {
           this.respuestaUpload = request.body;
-          console.log(this.respuestaUpload);
           if (this.respuestaUpload.valid) {
             let status: NbComponentStatus = "success";
             this.showToast(

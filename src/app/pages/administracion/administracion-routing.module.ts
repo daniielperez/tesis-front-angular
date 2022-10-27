@@ -5,6 +5,7 @@ import { AdministracionComponent } from "./administracion.component";
 import { EspacioListComponent } from "./espacio/espacio-list/espacio-list.component";
 import { PlanEstudioListComponent } from "./planEstudio/planEstudio-list/planEstudio-list.component";
 import { ProgramaComponent } from "./programa/programa.component";
+import { TabUploadComponent } from "./tabUpload/tabUpload.component";
 import { UploadComponent } from "./upload/upload.component";
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
     children: [
       {
         path: "subir-archivo",
-        component: UploadComponent,
+        component: TabUploadComponent,
       },
       {
         path: "programa",

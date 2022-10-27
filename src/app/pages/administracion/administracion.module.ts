@@ -41,6 +41,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { InfraestructuraRoutingModule } from "../infraestructura/infraestructura-routing.module";
 import { EspacioFormComponent } from "./espacio/espacio-form/espacio-form.component";
 import { EspacioListComponent } from "./espacio/espacio-list/espacio-list.component";
+import { TabUploadComponent } from "./tabUpload/tabUpload.component";
 
 const COMPONENTS = [
   UploadComponent,
@@ -51,6 +52,7 @@ const COMPONENTS = [
   PlanEstudioFormComponent,
   EspacioFormComponent,
   EspacioListComponent,
+  TabUploadComponent,
 ];
 
 const MODULES = [
@@ -80,6 +82,7 @@ const MODULES = [
   NbMenuModule,
   NbContextMenuModule,
   NbSpinnerModule,
+  NbBadgeModule,
 ];
 
 @NgModule({
