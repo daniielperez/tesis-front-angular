@@ -29,6 +29,7 @@ import {
   NbCheckboxModule,
   NbWindowModule,
   NbDialogModule,
+  NbToggleModule,
 } from "@nebular/theme";
 import { ThemeModule } from "../../@theme/theme.module";
 import { FileDragNDropDirective } from "../../directive/file-drag-n-drop.directive";
@@ -83,6 +84,7 @@ const MODULES = [
   NbContextMenuModule,
   NbSpinnerModule,
   NbBadgeModule,
+  NbToggleModule,
 ];
 
 @NgModule({

@@ -5,7 +5,7 @@
       obj["nombre"],
       obj["cupo"],
       obj["dimension"],
-      obj["capacidadmaxima"],
+      obj["nomTipoSalon"],
       obj["dispositivo"],
       obj["idPiso"],
       obj["idTiposalon"]
@@ -16,7 +16,7 @@
     public nombre: string,
     public cupo: string,
     public dimension: string,
-    public capacidadmaxima: string,
+    public nomTipoSalon: string,
     public dispositivo: string,
     public idPiso: any,
     public idTiposalon: any

@@ -7,7 +7,8 @@
       obj["numValid"],
       obj["estado"],
       obj["fechaInicio"],
-      obj["tiempo"]
+      obj["tiempo"],
+      obj["nuevoPeriodo"]
     );
   }
 
@@ -18,6 +19,7 @@
     public numValid: any,
     public estado: any,
     public fechaInicio: any,
-    public tiempo: any
+    public tiempo: any,
+    public nuevoPeriodo: boolean
   ) {}
 }

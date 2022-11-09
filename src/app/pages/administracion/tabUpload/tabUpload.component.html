@@ -3,15 +3,19 @@
         <nb-tabset fullWidth  (changeTab)="onChangeTab($event)">
             <nb-tab tabTitle="personas" class="row"  >
               <br>
-              <ngx-upload tipo="USUARIOS" [stompClient]="stompClient" titulo="personas" *ngIf="tipo == 'personas'"></ngx-upload>
+              <ngx-upload tipo="USUARIOS" titulo="personas" *ngIf="tipo == 'personas'"></ngx-upload>
             </nb-tab>
-            <nb-tab tabTitle="espacios academicos" class="row" >
+            <nb-tab tabTitle="cargas academicos" class="row" >
               <br>
-              <ngx-upload tipo="CARGAS_ACADEMICAS" [stompClient]="stompClient" titulo="cargas academicas" *ngIf="tipo == 'espacios academicos'"></ngx-upload>
+              <ngx-upload tipo="CARGAS_ACADEMICAS" titulo="cargas academicas" *ngIf="tipo == 'cargas academicos'"></ngx-upload>
             </nb-tab>
             <nb-tab tabTitle="matriculas" class="row" >
               <br>
-              <ngx-upload tipo="MATRICULA" [stompClient]="stompClient" titulo="matriculas" *ngIf="tipo == 'matriculas'"></ngx-upload>
+              <ngx-upload tipo="MATRICULA" titulo="matriculas" *ngIf="tipo == 'matriculas'"></ngx-upload>
+            </nb-tab>
+            <nb-tab tabTitle="horarios" class="row" >
+              <br>
+              <ngx-upload tipo="HORARIOS" titulo="horarios" *ngIf="tipo == 'horarios'"></ngx-upload>
             </nb-tab>
         </nb-tabset>
     </div>

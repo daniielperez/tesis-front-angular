@@ -34,6 +34,7 @@ export class UploadComponent implements OnInit, OnDestroy {
   public isErrors: boolean;
   public load: boolean = false;
   index = 1;
+  nuevoPeriodo: boolean;
   user: any;
   usersKey = "angular-9-jwt-refresh-token-users";
   stompClient;
@@ -117,10 +118,16 @@ export class UploadComponent implements OnInit, OnDestroy {
       estado: "listo para validar",
       tiempo: null,
       fechaInicio: new Date(),
+      nuevoPeriodo: false,
     };
     // this.solicitudUpload = SolicitudUpload.solicitudUploadToJson(
     //   this.solicitud
     // );
+  }
+
+  toggle(e) {
+    console.log(e);
+    this.nuevoPeriodo = e;
   }
 
   deleteFromArray() {
@@ -153,7 +160,10 @@ export class UploadComponent implements OnInit, OnDestroy {
         this.insertCallService(fd, "cargas-academicas");
         break;
       case "MATRICULA":
-        this.insertCallService(fd, "matricula");
+        this.insertCallService(fd, "matriculas");
+        break;
+      case "HORARIOS":
+        this.insertCallService(fd, "horarios");
         break;
 
       default:
