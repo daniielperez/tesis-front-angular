@@ -43,21 +43,36 @@ import { InfraestructuraRoutingModule } from "../infraestructura/infraestructura
 import { EspacioFormComponent } from "./espacio/espacio-form/espacio-form.component";
 import { EspacioListComponent } from "./espacio/espacio-list/espacio-list.component";
 import { TabUploadComponent } from "./tabUpload/tabUpload.component";
+import { HorarioComponent } from "./horario/horario.component";
+import { FullCalendarModule } from "@fullcalendar/angular";
+
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
+import interactionPlugin from "@fullcalendar/interaction";
+import { SearchPersonComponent } from "./search-person/search-person.component";
+import { ECommerceUserActivityComponent } from "./user-activity/user-activity.component";
+import { ContactsComponent } from "./contacts/contacts.component";
 
 const COMPONENTS = [
   UploadComponent,
   ProgramaComponent,
   PlanEstudioListComponent,
   FileDragNDropDirective,
-  ListErrorUploadComponent,
   PlanEstudioFormComponent,
   EspacioFormComponent,
   EspacioListComponent,
   TabUploadComponent,
+  ListErrorUploadComponent,
+  HorarioComponent,
+  SearchPersonComponent,
+  ECommerceUserActivityComponent,
+  ContactsComponent,
 ];
 
 const MODULES = [
   AdministracionRoutingModule,
+  FullCalendarModule,
   FormsModule,
   ReactiveFormsModule,
   NbDialogModule.forChild(),
@@ -87,6 +102,13 @@ const MODULES = [
   NbToggleModule,
 ];
 
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin,
+]);
+
 @NgModule({
   imports: [...MODULES],
   // entryComponents: [CustomEditorComponent],
@@ -94,7 +116,7 @@ const MODULES = [
   declarations: [
     ...routedAdminComponents,
     ...COMPONENTS,
-    ListErrorUploadComponent,
+    SearchPersonComponent,
   ],
 })
 export class AdministracionModule {}

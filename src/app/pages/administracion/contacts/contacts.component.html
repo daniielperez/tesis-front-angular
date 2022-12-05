@@ -1,0 +1,17 @@
+
+<nb-card size="medium">
+
+  <nb-card-header>
+    <span>Docentes</span>
+  </nb-card-header>
+  <nb-list class="user-activity-list">
+    <nb-list-item *ngFor="let c of recent">
+      <nb-user  [name]="c.user.name" title="Daniel.perezluna94@gmial.omn" size="large"></nb-user>
+      <!-- <div class="info-container">
+        <div>Daniel.perezluna94@gmial.omn</div>
+      </div> -->
+    </nb-list-item>
+  </nb-list>   
+</nb-card>
+
+

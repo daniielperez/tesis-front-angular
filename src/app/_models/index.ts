@@ -11,3 +11,4 @@ export * from "./bloque";
 export * from "./tipoSalon";
 export * from "./salon";
 export * from "./espacio";
+export * from "./horarioFullCalendar";

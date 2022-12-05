@@ -54,6 +54,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: "Espacios academicos",
         link: "/pages/administracion/espacio-academicos",
       },
+      {
+        title: "Buscar persona",
+        link: "/pages/administracion/search-person",
+      },
     ],
   },
 

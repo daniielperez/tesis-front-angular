@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card class="inline-form-card">
+      <nb-card-header>
+        Buscar persona
+        
+    </nb-card-header>
+      <nb-card-body>
+        <form class="form-inline">
+          <input type="text" nbInput fullWidth placeholder="Numero de documento" />
+          <button type="submit" nbButton status="primary" (click)="ngSearch()">Buscar</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-4" *ngIf="ready">
+      <nb-card>
+            <nb-card-header>Daniel Pérez</nb-card-header>
+            <nb-card-body>
+                <div class="container">
+                  <strong class="mt-5 mb-5 p2">Número de documento: </strong> {{usuario.documento}}
+                </div>
+                <div class="container mt-2">
+                  <strong>Nombres: </strong> {{usuario.nombres}}
+                </div>
+                <div class="container mt-2">
+                  <strong>Apellidos: </strong> {{usuario.apellidos}}
+                </div>
+                <div class="container mt-2">
+                  <strong>Tipo persona: </strong> {{usuario.tipoPersona}}
+                </div>
+                <div class="container mt-2">
+                  <strong class="mt-5 mb-5 p2">Correo: </strong> {{usuario.email}}
+                </div>
+            </nb-card-body>
+      </nb-card>    
+      <ngx-user-activity></ngx-user-activity>
+      <!-- <ngx-contacts></ngx-contacts> -->
+     
+  </div>
+  <div class="col-md-8" *ngIf="ready">
+    <div class="summary-container">
+      <div>
+        <div>Faltas</div>
+        <div class="h6">0 H</div>
+      </div>
+      <div>
+        <div>Asistencia</div>
+        <div class="h6">123 H</div>
+      </div>
+      <div>
+        <div>Promedio</div>
+        <div class="h6 green">100%</div>
+      </div>
+    </div>
+    <br>
+    <nb-card size="medium">
+      <nb-card-header>
+        Espacios
+      </nb-card-header>
+      <nb-list >
+        <nb-list-item *ngFor="let matricula of matriculas">
+          <div class="summary-list" >
+            <!-- <div>
+              <div class="h6"><nb-user [name]="matricula.cargaAcademica.docente.nombres + ' ' +  matricula.cargaAcademica.docente.apellidos" [title]="matricula.cargaAcademica.docente.documento"> </nb-user></div>
+            </div> -->
+          
+            <div>
+              <div>Nombre</div>
+              <div class="h6">{{matricula.cargaAcademica.espacio.nombre}}</div>
+            </div>
+          
+            <div>
+              <div>Faltas</div>
+              <div class="h6">0 H</div>
+            </div>
+            <div>
+              <div>Asistencia</div>
+              <div class="h6">123 H</div>
+            </div>
+            <div>
+              <div>Promedio</div>
+              <div class="h6 green">100% <nb-icon [icon]="'arrow-up'" pack="eva"></nb-icon></div>
+            </div>
+
+            <div>
+              <div>Estado</div>
+              <div class="h6 green"><nb-icon [icon]="'checkmark-circle-2-outline'" pack="eva"></nb-icon></div>
+            </div>
+            
+          </div>
+        </nb-list-item>
+     
+      </nb-list> 
+    </nb-card >
+    <nb-card size="medium">
+      <nb-card-header>
+        Horario
+      </nb-card-header>
+      <nb-card-body>
+        <ngx-horario [initialEvents]="initialEvents"></ngx-horario>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
