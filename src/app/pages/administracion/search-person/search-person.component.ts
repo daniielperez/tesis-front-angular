@@ -13,16 +13,34 @@ export class SearchPersonComponent implements OnInit {
   matriculas: any;
   usuario: any;
   initialEvents: EventInput[] = [];
+  horasTotalesFaltas;
+  horasTotalesAsistencia;
   // initialEvents: EventInput[];
   ngOnInit(): void {}
   ngSearch() {
     this._usuarioService.getByDocuemnt("123456").subscribe((request) => {
       this.matriculas = request.matriculas;
       this.usuario = request.usuario;
+      this.horasTotalesAsistencia = request.horasAssitenciaTotales;
+      this.horasTotalesFaltas = request.horasFaltaTotales;
       request.horarios.forEach((horario) => {
         this.initialEvents.push(horario);
       });
       this.ready = true;
     });
+  }
+
+  get porcentajeTotalCarga(){
+    let totalHoras = this.horasTotalesAsistencia + this.horasTotalesFaltas;
+    let porcentaje = this.horasTotalesAsistencia * 100 / totalHoras;
+    return porcentaje; 
+  }
+
+  public porcentajeTotalMatricula(matricula: any):boolean {
+    let porcentaje = matricula.cargaTotal > 0 ?
+    matricula.horasFaltaTotal * 100 / matricula.cargaTotal
+     : 100;
+     console.log(porcentaje)
+    return porcentaje < 20;
   }
 }

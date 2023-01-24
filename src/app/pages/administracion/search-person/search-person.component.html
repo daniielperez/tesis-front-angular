@@ -42,15 +42,15 @@
     <div class="summary-container">
       <div>
         <div>Faltas</div>
-        <div class="h6">0 H</div>
+        <div class="h6">{{ horasTotalesFaltas }} H</div>
       </div>
       <div>
         <div>Asistencia</div>
-        <div class="h6">123 H</div>
+        <div class="h6">{{ horasTotalesAsistencia }} H</div>
       </div>
       <div>
-        <div>Total Carga Academica</div>
-        <div class="h6 green">100%</div>
+        <div>Asistencia</div>
+        <div class="h6 green">{{ porcentajeTotalCarga | number:'1.1-2'}}%</div>
       </div>
     </div>
     <br>
@@ -72,20 +72,20 @@
           
             <div>
               <div>Faltas</div>
-              <div class="h6">0 H</div>
+              <div class="h6">{{ matricula.horasFaltaTotal }} H</div>
             </div>
             <div>
               <div>Asistencia</div>
-              <div class="h6">123 H</div>
+              <div class="h6">{{ matricula.horasAsistenciaTotal }} H</div>
             </div>
             <div>
               <div>Total carga Aca.</div>
-              <div class="h6 green">{{ matricula.cargaTotal }}</div>
+              <div class="h6 green">{{ matricula.cargaTotal }} H</div>
             </div>
 
             <div>
               <div>Estado</div>
-              <div class="h6 green"><nb-icon [icon]="'checkmark-circle-2-outline'" pack="eva"></nb-icon></div>
+              <div [ngClass]="{'h6 green': porcentajeTotalMatricula(matricula), 'h6 red': !porcentajeTotalMatricula(matricula)}" ><nb-icon [icon]="'checkmark-circle-2-outline'" pack="eva"></nb-icon></div>
             </div>
             
           </div>
