@@ -32,7 +32,6 @@
     "docs:build": "npm-run-all docs:prod docs:dirs",
     "docs:serve": "npm start -- docs --port 4100",
     "docs:gh-pages": "ts-node -P ./scripts/docs/tsconfig.json ./scripts/docs/build-docs.ts",
-    "prepush": "npm run lint:ci",
     "release:changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
     "postinstall": "ngcc --properties es2015 es5 browser module main --first-only --create-ivy-entry-points --tsconfig \"./src/tsconfig.app.json\""
   },
