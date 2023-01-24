@@ -1,14 +1,4 @@
-﻿// export class Usuario {
-//     id: number;
-//     username: string;
-//     password: string;
-//     firstName: string;
-//     lastName: string;
-//     jwtToken?: string;
-//     jwtToken?: string;
-// }
-
-export class Usuario {
+﻿export class Usuario {
   static usuarioDesdeJson(obj: object) {
     return new Usuario(
       obj["id"],

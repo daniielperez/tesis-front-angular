@@ -5,6 +5,9 @@
  */
 export const environment = {
   production: true,
-  apiUrl: "http://localhost:8080/api",
+  clientId: "frontendappangular",
+  clientSecret: "q%Us6Mq**3!@Z7BwI%ei4opRZl%9Qr",
+  apiUrl: "http://localhost:8090/api",
   currentThemeLife: 604800000, // 1 week in milliseconds
+  app_url_websocket: "http://localhost:8080/ws",
 };

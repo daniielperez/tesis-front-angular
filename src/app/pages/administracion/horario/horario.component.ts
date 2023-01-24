@@ -44,6 +44,7 @@ export class HorarioComponent implements OnInit {
   ready = false;
   @Input() initialEvents: EventInput[] = [];
   calendarOptions: CalendarOptions = {
+    // plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
     locale: "es",
     nowIndicator: true,
     allDaySlot: false,
@@ -73,7 +74,8 @@ export class HorarioComponent implements OnInit {
       // left: "prev,next today",
       left: "",
       center: "",
-      right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+      // right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+      right: "timeGridWeek,timeGridDay,listWeek",
     },
     initialView: "timeGridWeek",
     initialEvents: INITIAL_EVENTS2, // alternatively, use the `events` setting to fetch from a feed
@@ -99,7 +101,9 @@ export class HorarioComponent implements OnInit {
         HorarioFullCalendar.HorarioFullCalendarDesdeJson(horario)
       );
     });
-    this.ready = true;
+    setTimeout(() => {
+      this.ready = true;
+    }, 2500);
     // this._usuarioService.getByDocuemnt("123456").subscribe((request) => {
     //   request.horarios.forEach((horario) => {
     //     this.ready = true;
