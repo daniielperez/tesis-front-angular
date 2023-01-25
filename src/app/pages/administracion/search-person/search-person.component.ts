@@ -8,6 +8,7 @@ import { UsuarioService } from "../../../_services";
   styleUrls: ["./search-person.component.scss"],
 })
 export class SearchPersonComponent implements OnInit {
+  actividades: any;
   constructor(private _usuarioService: UsuarioService) {}
   ready = false;
   matriculas: any;
@@ -20,6 +21,7 @@ export class SearchPersonComponent implements OnInit {
   ngSearch() {
     this._usuarioService.getByDocuemnt("123456").subscribe((request) => {
       this.matriculas = request.matriculas;
+      this.actividades = request.actividad;
       this.usuario = request.usuario;
       this.horasTotalesAsistencia = request.horasAssitenciaTotales;
       this.horasTotalesFaltas = request.horasFaltaTotales;

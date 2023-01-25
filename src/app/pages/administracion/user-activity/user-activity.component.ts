@@ -1,4 +1,5 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { EventInput } from "@fullcalendar/core";
 import { NbThemeService } from "@nebular/theme";
 import { takeWhile } from "rxjs/operators";
 
@@ -12,9 +13,9 @@ import {
   styleUrls: ["./user-activity.component.scss"],
   templateUrl: "./user-activity.component.html",
 })
-export class ECommerceUserActivityComponent implements OnDestroy {
+export class ECommerceUserActivityComponent implements OnDestroy, OnInit {
   private alive = true;
-
+  @Input() actividades: EventInput[] = [];
   userActivity: UserActive[] = [];
   type = "month";
   types = ["week", "month", "year"];
@@ -31,18 +32,11 @@ export class ECommerceUserActivityComponent implements OnDestroy {
         this.currentTheme = theme.name;
       });
 
-    this.getUserActivity(this.type);
+  }
+  ngOnInit(): void {
   }
 
-  getUserActivity(period: string) {
-    this.userActivityService
-      .getUserActivityData(period)
-      .pipe(takeWhile(() => this.alive))
-      .subscribe((userActivityData) => {
-        this.userActivity = userActivityData;
-        console.log(this.userActivity);
-      });
-  }
+ 
 
   ngOnDestroy() {
     this.alive = false;

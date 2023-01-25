@@ -103,7 +103,7 @@ export class HorarioComponent implements OnInit {
     });
     setTimeout(() => {
       this.ready = true;
-    }, 2500);
+    }, 1000);
     // this._usuarioService.getByDocuemnt("123456").subscribe((request) => {
     //   request.horarios.forEach((horario) => {
     //     this.ready = true;
