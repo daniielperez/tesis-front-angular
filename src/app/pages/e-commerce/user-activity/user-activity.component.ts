@@ -13,7 +13,7 @@ export class ECommerceUserActivityComponent implements OnDestroy {
 
   private alive = true;
 
-  userActivity: UserActive[] = [];
+  userActivity: UserActive[];
   type = 'month';
   types = ['week', 'month', 'year'];
   currentTheme: string;

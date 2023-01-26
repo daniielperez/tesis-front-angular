@@ -1,0 +1,44 @@
+<nb-card size="large">
+  <nb-card-header>{{ matricula.cargaAcademica.espacio.nombre }}</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-12">
+        <nb-list class="user-activity-list">
+          <nb-list-item >
+      
+            <div class="visited-pages-count">
+              <div class="caption">Faltas</div>
+              <div class="h6">{{  matricula.horasFaltaTotal  }}</div>
+            </div>
+
+            <div class="visited-pages-count">
+              <div class="caption">Asistencia</div>
+              <div class="h6">{{  matricula.horasAsistenciaTotal  }}</div>
+            </div>
+
+            <div class="visited-pages-count">
+              <div class="caption">Total carga Aca.</div>
+              <div class="h6">{{  matricula.cargaTotal  }}</div>
+            </div>
+      
+          </nb-list-item>
+        </nb-list>
+      </div>
+      <div class="col-12">
+        <ngx-user-activity *ngIf="matricula.actividades.length != 0" [actividades] = matricula.actividades></ngx-user-activity> 
+        <h6 class="text-center" *ngIf="matricula.actividades.length == 0">No existen registros de actividades</h6>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button
+      type="button"
+      class="cancel"
+      (click)="cancel()"
+      nbButton
+      status="basic"
+    >
+      Cerrar
+    </button>
+  </nb-card-footer>
+</nb-card>

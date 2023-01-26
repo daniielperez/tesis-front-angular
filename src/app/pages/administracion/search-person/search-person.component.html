@@ -6,10 +6,10 @@
         
     </nb-card-header>
       <nb-card-body>
-        <form class="form-inline">
-          <input type="text" nbInput fullWidth placeholder="Numero de documento" />
+        <div class="form-inline">
+          <input [(ngModel)] ="identificationFind" type="text" nbInput fullWidth placeholder="Numero de documento" />
           <button type="submit" nbButton status="primary" (click)="ngSearch()">Buscar</button>
-        </form>
+        </div>
       </nb-card-body>
     </nb-card>
   </div>
@@ -61,7 +61,7 @@
       </nb-card-header>
       <nb-list >
         <nb-list-item *ngFor="let matricula of matriculas">
-          <div class="summary-list" >
+          <div class="summary-list" (click)="onOpenModal(matricula)">
             <!-- <div>
               <div class="h6"><nb-user [name]="matricula.cargaAcademica.docente.nombres + ' ' +  matricula.cargaAcademica.docente.apellidos" [title]="matricula.cargaAcademica.docente.documento"> </nb-user></div>
             </div> -->

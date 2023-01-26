@@ -53,6 +53,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { SearchPersonComponent } from "./search-person/search-person.component";
 import { ECommerceUserActivityComponent } from "./user-activity/user-activity.component";
 import { ContactsComponent } from "./contacts/contacts.component";
+import { ViewEspacioAcademicoModalComponent } from "./search-person/view-espacioAcademico-modal/view-espacioAcademico-modal.component";
 
 const COMPONENTS = [
   UploadComponent,
@@ -67,6 +68,7 @@ const COMPONENTS = [
   HorarioComponent,
   SearchPersonComponent,
   ECommerceUserActivityComponent,
+  ViewEspacioAcademicoModalComponent,
   ContactsComponent,
 ];
 
