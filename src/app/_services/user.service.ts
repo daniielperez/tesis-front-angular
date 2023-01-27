@@ -24,4 +24,16 @@ export class UsuarioService {
         })
       );
   }
+
+  public getMatriculaByIdAndCarga(idUsuario: number, idCarga: string) {
+    return this.http
+      .get<any>(this.url + "/" + idUsuario + "/" + idCarga,{
+        observe: "response",
+      })
+      .pipe(
+        map((reques) => {
+          return reques.body;
+        })
+      );
+  }
 }

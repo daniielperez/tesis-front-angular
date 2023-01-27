@@ -13,7 +13,9 @@ import {
 import { INITIAL_EVENTS } from "../utils/event-utils";
 import { EventInput } from "@fullcalendar/core";
 import { UsuarioService } from "../../../_services";
-import { HorarioFullCalendar } from "../../../_models";
+import { HorarioFullCalendar, Usuario } from "../../../_models";
+import { NbDialogService } from "@nebular/theme";
+import { ViewEspacioAcademicoModalComponent } from "../search-person/view-espacioAcademico-modal/view-espacioAcademico-modal.component";
 
 const TODAY_STR = new Date().toISOString().replace(/T.*$/, ""); // YYYY-MM-DD of today
 export const INITIAL_EVENTS2: EventInput[] = [
@@ -40,8 +42,9 @@ export const INITIAL_EVENTS2: EventInput[] = [
   styleUrls: ["./horario.component.scss"],
 })
 export class HorarioComponent implements OnInit {
-  constructor(private _usuarioService: UsuarioService) {}
+  constructor(private _usuarioService: UsuarioService,private dialogService: NbDialogService) {}
   ready = false;
+  @Input() usuario: Usuario;
   @Input() initialEvents: EventInput[] = [];
   calendarOptions: CalendarOptions = {
     // plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
@@ -96,6 +99,8 @@ export class HorarioComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    
+    
     this.initialEvents.forEach((horario) => {
       INITIAL_EVENTS2.push(
         HorarioFullCalendar.HorarioFullCalendarDesdeJson(horario)
@@ -116,13 +121,28 @@ export class HorarioComponent implements OnInit {
     // });
   }
 
-  handleEventClick(clickInfo: EventClickArg) {
-    if (
-      confirm(
-        `Are you sure you want to delete the event '${clickInfo.event.id}'`
-      )
-    ) {
-      // clickInfo.event.remove();
-    }
+  onOpenModal(matricula) {
+    this.dialogService
+      .open(ViewEspacioAcademicoModalComponent, {
+        closeOnBackdropClick: false,
+        context: {
+          matricula: matricula,
+        },
+      })
+      .onClose.subscribe((requestModal) => {
+        if (requestModal) {
+          this.send(requestModal);
+        }
+      });
+  }
+  send(requestModal) {
+      this.ngOnInit();
+  }
+
+  handleEventClick(clickInfo: any) {
+    this._usuarioService.getMatriculaByIdAndCarga(this.usuario.id, clickInfo.event.extendedProps.carga.id).subscribe((response: any)=>{
+      console.log();
+      this.onOpenModal(response);
+    });
   }
 }
