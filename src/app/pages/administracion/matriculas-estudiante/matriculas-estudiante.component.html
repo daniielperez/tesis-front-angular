@@ -1,0 +1,40 @@
+<nb-card size="medium">
+  <nb-card-header>
+    Espacios
+  </nb-card-header>
+  <nb-list >
+
+    <nb-list-item *ngFor="let matricula of matriculas">
+      <div class="summary-list" (click)="onOpenModal(matricula)">
+        <!-- <div>
+          <div class="h6"><nb-user [name]="matricula.cargaAcademica.docente.nombres + ' ' +  matricula.cargaAcademica.docente.apellidos" [title]="matricula.cargaAcademica.docente.documento"> </nb-user></div>
+        </div> -->
+      
+        <div>
+          <div>Nombre</div>
+          <div class="h6">{{matricula.cargaAcademica.espacio.nombre}}</div>
+        </div>
+      
+        <div>
+          <div>Faltas</div>
+          <div class="h6">{{ matricula.horasFaltaTotal }} H</div>
+        </div>
+        <div>
+          <div>Asistencia</div>
+          <div class="h6">{{ matricula.horasAsistenciaTotal }} H</div>
+        </div>
+        <div>
+          <div>Total carga Aca.</div>
+          <div class="h6 green">{{ matricula.cargaTotal }} H</div>
+        </div>
+
+        <div>
+          <div>Estado</div>
+          <div [ngClass]="{'h6 green': porcentajeTotalMatricula(matricula), 'h6 red': !porcentajeTotalMatricula(matricula)}" ><nb-icon [icon]="'checkmark-circle-2-outline'" pack="eva"></nb-icon></div>
+        </div>
+        
+      </div>
+    </nb-list-item>
+ 
+  </nb-list> 
+</nb-card >

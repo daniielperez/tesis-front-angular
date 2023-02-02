@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { EventInput } from "@fullcalendar/core";
 import { UsuarioService } from "../../../_services";
-import { NbDialogService } from "@nebular/theme";
-import { ViewEspacioAcademicoModalComponent } from "./view-espacioAcademico-modal/view-espacioAcademico-modal.component";
 
 @Component({
   selector: "ngx-search-person",
@@ -11,6 +9,7 @@ import { ViewEspacioAcademicoModalComponent } from "./view-espacioAcademico-moda
 })
 export class SearchPersonComponent implements OnInit {
   actividades: any; 
+  cargas: any; 
   ready = false;
   matriculas: any;
   usuario: any;
@@ -21,17 +20,21 @@ export class SearchPersonComponent implements OnInit {
   // initialEvents: EventInput[];
 
   constructor(
-    private _usuarioService: UsuarioService,
-    private dialogService: NbDialogService
+    private _usuarioService: UsuarioService
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
   ngSearch() {
+    this.ready = false
+    this.initialEvents = [];
     this._usuarioService
       .getByDocuemnt(this.identificationFind)
       .subscribe({
         next: (request) => {
           this.matriculas = request.matriculas;
           this.actividades = request.actividad;
+          this.cargas = request.cargas;
           this.usuario = request.usuario;
           this.horasTotalesAsistencia = request.horasAssitenciaTotales;
           this.horasTotalesFaltas = request.horasFaltaTotales;
@@ -45,6 +48,8 @@ export class SearchPersonComponent implements OnInit {
           this.ready = false;
         },
       });
+      console.log(this.initialEvents);
+      
   }
 
   get porcentajeTotalCarga(){
@@ -53,28 +58,7 @@ export class SearchPersonComponent implements OnInit {
     return porcentaje; 
   }
 
-  public porcentajeTotalMatricula(matricula: any):boolean {
-    let porcentaje = matricula.cargaTotal > 0 ?
-    matricula.horasFaltaTotal * 100 / matricula.cargaTotal
-     : 100;
-    return porcentaje < 20;
-  }
+  
 
-  onOpenModal(matricula) {
-    this.dialogService
-      .open(ViewEspacioAcademicoModalComponent, {
-        closeOnBackdropClick: false,
-        context: {
-          matricula: matricula,
-        },
-      })
-      .onClose.subscribe((requestModal) => {
-        if (requestModal) {
-          this.send(requestModal);
-        }
-      });
-  }
-  send(requestModal) {
-      this.ngOnInit();
-  }
+  
 }

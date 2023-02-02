@@ -15,10 +15,10 @@ import { EventInput } from "@fullcalendar/core";
 import { UsuarioService } from "../../../_services";
 import { HorarioFullCalendar, Usuario } from "../../../_models";
 import { NbDialogService } from "@nebular/theme";
-import { ViewEspacioAcademicoModalComponent } from "../search-person/view-espacioAcademico-modal/view-espacioAcademico-modal.component";
+import { ViewEspacioAcademicoModalComponent } from "../view-espacioAcademico-modal/view-espacioAcademico-modal.component";
 
 const TODAY_STR = new Date().toISOString().replace(/T.*$/, ""); // YYYY-MM-DD of today
-export const INITIAL_EVENTS2: EventInput[] = [
+export let INITIAL_EVENTS2: EventInput[] = [
   // {
   //   title: "Repeticion evento",
   //   backgroundColor: "#00d68f",
@@ -81,8 +81,8 @@ export class HorarioComponent implements OnInit {
       right: "timeGridWeek,timeGridDay,listWeek",
     },
     initialView: "timeGridWeek",
-    initialEvents: INITIAL_EVENTS2, // alternatively, use the `events` setting to fetch from a feed
-    // events: INITIAL_EVENTS2, // alternatively, use the `events` setting to fetch from a feed
+    // initialEvents: INITIAL_EVENTS2, // alternatively, use the `events` setting to fetch from a feed
+    events: INITIAL_EVENTS2, // alternatively, use the `events` setting to fetch from a feed
     weekends: true,
     editable: false,
     selectable: false,
@@ -100,15 +100,14 @@ export class HorarioComponent implements OnInit {
 
   ngOnInit(): void {
     
-    
     this.initialEvents.forEach((horario) => {
       INITIAL_EVENTS2.push(
         HorarioFullCalendar.HorarioFullCalendarDesdeJson(horario)
       );
     });
-    setTimeout(() => {
+    
       this.ready = true;
-    }, 1000);
+      INITIAL_EVENTS2 = []
     // this._usuarioService.getByDocuemnt("123456").subscribe((request) => {
     //   request.horarios.forEach((horario) => {
     //     this.ready = true;

@@ -3,7 +3,6 @@
     <nb-card class="inline-form-card">
       <nb-card-header>
         Buscar persona
-        
     </nb-card-header>
       <nb-card-body>
         <div class="form-inline">
@@ -13,95 +12,72 @@
       </nb-card-body>
     </nb-card>
   </div>
-  <div class="col-md-4" *ngIf="ready">
-      <nb-card>
-            <nb-card-header>Daniel Pérez</nb-card-header>
-            <nb-card-body>
-                <div class="container">
-                  <strong class="mt-5 mb-5 p2">Número de documento: </strong> {{usuario.documento}}
-                </div>
-                <div class="container mt-2">
-                  <strong>Nombres: </strong> {{usuario.nombres}}
-                </div>
-                <div class="container mt-2">
-                  <strong>Apellidos: </strong> {{usuario.apellidos}}
-                </div>
-                <div class="container mt-2">
-                  <strong>Tipo persona: </strong> {{usuario.tipoPersona}}
-                </div>
-                <div class="container mt-2">
-                  <strong class="mt-5 mb-5 p2">Correo: </strong> {{usuario.email}}
-                </div>
-            </nb-card-body>
-      </nb-card>    
-      <ngx-user-activity [actividades] = actividades></ngx-user-activity>
-      <!-- <ngx-contacts></ngx-contacts> -->
-     
-  </div>
-  <div class="col-md-8" *ngIf="ready">
-    <div class="summary-container">
-      <div>
-        <div>Faltas</div>
-        <div class="h6">{{ horasTotalesFaltas }} H</div>
-      </div>
-      <div>
-        <div>Asistencia</div>
-        <div class="h6">{{ horasTotalesAsistencia }} H</div>
-      </div>
-      <div>
-        <div>Asistencia</div>
-        <div class="h6 green">{{ porcentajeTotalCarga | number:'1.1-2'}}%</div>
-      </div>
+</div>
+<div class="container" *ngIf="ready">
+  <div class="row" *ngIf="usuario && usuario.tipoPersona == 'ESTUDIANTE'">
+    <div class="col-md-4">
+        <ngx-info-persona [usuario]="usuario" ></ngx-info-persona>    
+        <ngx-user-activity [actividades] = actividades></ngx-user-activity>
     </div>
-    <br>
-
-    <nb-card size="medium">
-      <nb-card-header>
-        Espacios
-      </nb-card-header>
-      <nb-list >
-        <nb-list-item *ngFor="let matricula of matriculas">
-          <div class="summary-list" (click)="onOpenModal(matricula)">
-            <!-- <div>
-              <div class="h6"><nb-user [name]="matricula.cargaAcademica.docente.nombres + ' ' +  matricula.cargaAcademica.docente.apellidos" [title]="matricula.cargaAcademica.docente.documento"> </nb-user></div>
-            </div> -->
-          
-            <div>
-              <div>Nombre</div>
-              <div class="h6">{{matricula.cargaAcademica.espacio.nombre}}</div>
-            </div>
-          
-            <div>
-              <div>Faltas</div>
-              <div class="h6">{{ matricula.horasFaltaTotal }} H</div>
-            </div>
-            <div>
-              <div>Asistencia</div>
-              <div class="h6">{{ matricula.horasAsistenciaTotal }} H</div>
-            </div>
-            <div>
-              <div>Total carga Aca.</div>
-              <div class="h6 green">{{ matricula.cargaTotal }} H</div>
-            </div>
-
-            <div>
-              <div>Estado</div>
-              <div [ngClass]="{'h6 green': porcentajeTotalMatricula(matricula), 'h6 red': !porcentajeTotalMatricula(matricula)}" ><nb-icon [icon]="'checkmark-circle-2-outline'" pack="eva"></nb-icon></div>
-            </div>
-            
-          </div>
-        </nb-list-item>
-     
-      </nb-list> 
-    </nb-card >
-
-    <nb-card size="medium">
-      <nb-card-header>
-        Horario
-      </nb-card-header>
-      <nb-card-body>
-        <ngx-horario [initialEvents]="initialEvents" [usuario] = "usuario"></ngx-horario>
-      </nb-card-body>
-    </nb-card>
+    <div class="col-md-8">
+      <div class="summary-container">
+        <div>
+          <div>Faltas</div>
+          <div class="h6">{{ horasTotalesFaltas }} H</div>
+        </div>
+        <div>
+          <div>Asistencia</div> 
+          <div class="h6">{{ horasTotalesAsistencia }} H</div>
+        </div>
+        <div>
+          <div>Asistencia</div>
+          <div class="h6 green">{{ porcentajeTotalCarga | number:'1.1-2'}}%</div>
+        </div>
+      </div>
+      <br>
+      <ngx-matriculas-estudiante [matriculas]="matriculas"></ngx-matriculas-estudiante>
+      <nb-card size="medium">
+        <nb-card-header>
+          Horario
+        </nb-card-header>
+        <nb-card-body>
+          <ngx-horario *ngIf="initialEvents.length != 0" [initialEvents]="initialEvents" [usuario] = "usuario"></ngx-horario>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+  <div class="row" *ngIf="usuario && usuario.tipoPersona == 'DOCENTE'">
+    <div class="col-md-4" >
+        <ngx-info-persona [usuario]="usuario" ></ngx-info-persona>    
+        <!-- <ngx-user-activity [actividades] = actividades></ngx-user-activity> -->
+    </div>
+    <div class="col-md-8" >
+      <div class="summary-container">
+        <div>
+          <div>Faltas</div>
+          <div class="h6">{{ horasTotalesFaltas }} H</div>
+        </div>
+        <div>
+          <div>Asistencia</div> 
+          <div class="h6">{{ horasTotalesAsistencia }} H</div>
+        </div>
+        <div>
+          <div>Asistencia</div>
+          <div class="h6 green">{{ porcentajeTotalCarga | number:'1.1-2'}}%</div>
+        </div>
+      </div>
+      <br>
+      <ngx-carga-docente [cargas]="cargas"></ngx-carga-docente>
+      <nb-card size="medium">
+        <nb-card-header>
+          Horario
+        </nb-card-header>
+        <nb-card-body>
+          <ngx-horario *ngIf="initialEvents.length != 0" [initialEvents]="initialEvents" [usuario] = "usuario"></ngx-horario>
+        </nb-card-body>
+      </nb-card>
+    </div>
   </div>
 </div>
+
+

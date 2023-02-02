@@ -1,0 +1,34 @@
+<nb-card size="medium">
+  <nb-card-header>
+    Carga Docente
+  </nb-card-header>
+  <nb-list >
+
+    <nb-list-item *ngFor="let carga of cargas">
+      <div class="summary-list" (click)="onOpenModal(matricula)">
+        <!-- <div>
+          <div class="h6"><nb-user [name]="matricula.cargaAcademica.docente.nombres + ' ' +  matricula.cargaAcademica.docente.apellidos" [title]="matricula.cargaAcademica.docente.documento"> </nb-user></div>
+        </div> -->
+      
+        <div>
+          <div>Nombre</div>
+          <div class="h6">{{carga.espacio.nombre}}</div>
+        </div>
+      
+        <div>
+          <div>Faltas</div>
+          <div class="h6">{{ carga.horasFaltaTotal }} H</div>
+        </div>
+        <div>
+          <div>Asistencia</div>
+          <div class="h6">{{ carga.horasAsistenciaTotal }} H</div>
+        </div>
+        <div>
+          <div>Total carga Aca.</div>
+          <div class="h6 green">{{ carga.cargaTotal }} H</div>
+        </div>
+      </div>
+    </nb-list-item>
+ 
+  </nb-list> 
+</nb-card >

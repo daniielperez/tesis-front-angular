@@ -44,6 +44,9 @@ import { EspacioFormComponent } from "./espacio/espacio-form/espacio-form.compon
 import { EspacioListComponent } from "./espacio/espacio-list/espacio-list.component";
 import { TabUploadComponent } from "./tabUpload/tabUpload.component";
 import { HorarioComponent } from "./horario/horario.component";
+import { CargaDocenteComponent } from "./carga-docente/carga-docente.component";
+import { InfoPersonaComponent } from "./info-persona/info-persona.component";
+import { MatriculasEstudianteComponent } from "./matriculas-estudiante/matriculas-estudiante.component";
 import { FullCalendarModule } from "@fullcalendar/angular";
 
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -53,7 +56,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { SearchPersonComponent } from "./search-person/search-person.component";
 import { ECommerceUserActivityComponent } from "./user-activity/user-activity.component";
 import { ContactsComponent } from "./contacts/contacts.component";
-import { ViewEspacioAcademicoModalComponent } from "./search-person/view-espacioAcademico-modal/view-espacioAcademico-modal.component";
+import { ViewEspacioAcademicoModalComponent } from "./view-espacioAcademico-modal/view-espacioAcademico-modal.component";
 
 const COMPONENTS = [
   UploadComponent,
@@ -70,6 +73,9 @@ const COMPONENTS = [
   ECommerceUserActivityComponent,
   ViewEspacioAcademicoModalComponent,
   ContactsComponent,
+  MatriculasEstudianteComponent,
+  InfoPersonaComponent,
+  CargaDocenteComponent
 ];
 
 const MODULES = [
