@@ -11,3 +11,4 @@ export * from "./piso.service";
 export * from "./tipoSalon.service";
 export * from "./salon.service";
 export * from "./solicitud.service";
+export * from "./cargaAcademica.service";

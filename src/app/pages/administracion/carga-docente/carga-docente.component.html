@@ -5,7 +5,7 @@
   <nb-list >
 
     <nb-list-item *ngFor="let carga of cargas">
-      <div class="summary-list" (click)="onOpenModal(matricula)">
+      <div class="summary-list" (click)="goToCargaDetail(carga)">
         <!-- <div>
           <div class="h6"><nb-user [name]="matricula.cargaAcademica.docente.nombres + ' ' +  matricula.cargaAcademica.docente.apellidos" [title]="matricula.cargaAcademica.docente.documento"> </nb-user></div>
         </div> -->
