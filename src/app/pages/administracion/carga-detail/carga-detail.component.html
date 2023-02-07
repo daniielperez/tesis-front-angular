@@ -1,3 +1,47 @@
-<p>
-  carga-detail works!
-</p>
+<div class="row">
+  <div class="col-md-3">
+    <nb-card>
+      <nb-card-header>
+        Carga Academica
+      </nb-card-header>
+      <nb-card-body>
+          <div class="summary-list container">
+            
+            <div>
+              <div>Nombre</div>
+              <div class="h6">{{cargaAcademica.espacio.nombre}}</div>
+            </div>
+          
+            <div>
+              <div>Faltas</div>
+              <div class="h6">{{ cargaAcademica.horasFaltaTotal }} H</div>
+            </div>
+            <div>
+              <div>Asistencia</div>
+              <div class="h6">{{ cargaAcademica.horasAsistenciaTotal }} H</div>
+            </div>
+            <div>
+              <div>Total carga Aca.</div>
+              <div class="h6 green">{{ cargaAcademica.cargaTotal }} H</div>
+            </div>
+          </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-9">
+    <nb-card>
+      <nb-card-body>
+        <nb-tabset fullWidth>
+          <nb-tab tabTitle="Matriculas" [badgeText]="cargaAcademica.matriculas.length"
+          badgePosition="top right"
+          badgeStatus="success">
+            <ngx-list-matricula [matriculas]="cargaAcademica.matriculas"></ngx-list-matricula>
+          </nb-tab>
+          <nb-tab tabTitle="Sesiones">
+            <p>List of <strong>Sesiones</strong>.</p>
+          </nb-tab>
+        </nb-tabset>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
