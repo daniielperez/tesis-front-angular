@@ -59,6 +59,7 @@ import { ContactsComponent } from "./contacts/contacts.component";
 import { ViewEspacioAcademicoModalComponent } from "./view-espacioAcademico-modal/view-espacioAcademico-modal.component";
 import { CargaDetailComponent } from "./carga-detail/carga-detail.component";
 import { ListMatriculaComponent } from "./list-matricula/list-matricula.component";
+import { ListSesionesComponent } from "./list-sesiones/list-sesiones.component";
 
 const COMPONENTS = [
   UploadComponent,
@@ -79,7 +80,8 @@ const COMPONENTS = [
   InfoPersonaComponent,
   CargaDocenteComponent,
   CargaDetailComponent,
-  ListMatriculaComponent
+  ListMatriculaComponent,
+  ListSesionesComponent
 ];
 
 const MODULES = [

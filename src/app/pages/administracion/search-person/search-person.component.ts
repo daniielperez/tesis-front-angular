@@ -48,7 +48,6 @@ export class SearchPersonComponent implements OnInit {
           this.ready = false;
         },
       });
-      console.log(this.initialEvents);
       
   }
 

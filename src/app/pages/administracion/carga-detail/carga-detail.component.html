@@ -37,8 +37,9 @@
           badgeStatus="success">
             <ngx-list-matricula [matriculas]="cargaAcademica.matriculas"></ngx-list-matricula>
           </nb-tab>
-          <nb-tab tabTitle="Sesiones">
-            <p>List of <strong>Sesiones</strong>.</p>
+          <nb-tab tabTitle="Sesiones" [badgeText]="cargaAcademica.sesiones.length" badgePosition="top right"
+          badgeStatus="success">
+            <ngx-list-sesiones [sesiones]="cargaAcademica.sesiones"></ngx-list-sesiones>
           </nb-tab>
         </nb-tabset>
       </nb-card-body>
