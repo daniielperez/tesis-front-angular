@@ -16,6 +16,7 @@ import {
 export class ECommerceUserActivityComponent implements OnDestroy, OnInit {
   private alive = true;
   @Input() actividades: EventInput[] = [];
+  @Input() userType: String = "ESTUDIANTE";
   userActivity: UserActive[] = [];
   type = "month";
   types = ["week", "month", "year"];

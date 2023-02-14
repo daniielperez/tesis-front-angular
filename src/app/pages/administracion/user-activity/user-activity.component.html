@@ -1,4 +1,4 @@
-<nb-card size="medium">
+<nb-card size="large">
 
   <nb-card-header>
     <span>Actividades</span>
@@ -9,7 +9,8 @@
 
       <div class="visited-date">
         <div class="caption">{{ item.sesion?.fechain | date:'mediumDate' }}</div>
-        <div class="caption">{{ item.carga?.espacio.nombre }}</div>
+        <div *ngIf="userType == 'ESTUDIANTE'" class="caption">{{ item.carga?.espacio.nombre }}</div>
+        <div *ngIf="userType == 'DOCENTE'" class="caption">{{ item.usuario?.nombres }} {{ item.usuario?.apellidos }}</div>
       </div>
 
       <div class="visited-pages-count">

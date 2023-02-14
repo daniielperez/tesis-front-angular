@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
 import { ViewEspacioAcademicoModalComponent } from '../view-espacioAcademico-modal/view-espacioAcademico-modal.component';
+import { DatePipe } from '@angular/common';
+import { ECommerceUserActivityComponent } from '../user-activity/user-activity.component';
+import { log } from 'console';
 
 @Component({
   selector: 'ngx-list-sesiones',
@@ -35,16 +38,29 @@ export class ListSesionesComponent implements OnInit {
           return data.salon.nombre;
         },
       },
-      piso: {
-        title: "Piso",
+      fecha: {
+        title: "Fecha",
         valuePrepareFunction: (cell, data) => {
-          return data.salon.piso.nombre;
+          return this.datePipe.transform(data.fechain,'yyyy-MM-dd');
         },
       },
+      hInicio: {
+        title: "Inicio",
+        valuePrepareFunction: (cell, data) => {
+          return this.datePipe.transform(data.hentrada,'h:mm a');
+        },
+      },
+      hFin: {
+        title: "Fin",
+        valuePrepareFunction: (cell, data) => {
+          return this.datePipe.transform(data.hsalida,'h:mm a');
+        },
+      },
+
     },
   };
 
-  constructor(private dialogService: NbDialogService) { }
+  constructor(private dialogService: NbDialogService, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.source = this.sesiones;
@@ -52,10 +68,11 @@ export class ListSesionesComponent implements OnInit {
 
   onCustom(event) {
     this.dialogService
-      .open(ViewEspacioAcademicoModalComponent, {
-        closeOnBackdropClick: false,
+      .open(ECommerceUserActivityComponent, {
+        closeOnBackdropClick: true,
         context: {
-          matricula: event.data,
+          userType: "DOCENTE",
+          actividades: event.data.actividades
         },
       })
       .onClose.subscribe((requestModal) => {

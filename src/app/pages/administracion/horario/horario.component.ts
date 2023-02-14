@@ -16,6 +16,8 @@ import { UsuarioService } from "../../../_services";
 import { HorarioFullCalendar, Usuario } from "../../../_models";
 import { NbDialogService } from "@nebular/theme";
 import { ViewEspacioAcademicoModalComponent } from "../view-espacioAcademico-modal/view-espacioAcademico-modal.component";
+import { CargaAcademicaService } from '../../../_services';
+import { Router } from "@angular/router";
 
 const TODAY_STR = new Date().toISOString().replace(/T.*$/, ""); // YYYY-MM-DD of today
 export let INITIAL_EVENTS2: EventInput[] = [
@@ -42,9 +44,9 @@ export let INITIAL_EVENTS2: EventInput[] = [
   styleUrls: ["./horario.component.scss"],
 })
 export class HorarioComponent implements OnInit {
-  constructor(private _usuarioService: UsuarioService,private dialogService: NbDialogService) {}
+  constructor(private _usuarioService: UsuarioService,private dialogService: NbDialogService,private _cargaAcademicaService: CargaAcademicaService, private router: Router) {}
   ready = false;
-  @Input() usuario: Usuario;
+  @Input() usuario: any;
   @Input() initialEvents: EventInput[] = [];
   calendarOptions: CalendarOptions = {
     // plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
@@ -139,9 +141,34 @@ export class HorarioComponent implements OnInit {
   }
 
   handleEventClick(clickInfo: any) {
-    this._usuarioService.getMatriculaByIdAndCarga(this.usuario.id, clickInfo.event.extendedProps.carga.id).subscribe((response: any)=>{
-      console.log();
-      this.onOpenModal(response);
-    });
+
+    if(this.usuario.tipoPersona == 'ESTUDIANTE'){
+      this._usuarioService.getMatriculaByIdAndCarga(this.usuario.id, clickInfo.event.extendedProps.carga.id).subscribe((response: any)=>{
+        this.onOpenModal(response);
+      });
+    }else{
+      let carga = clickInfo.event.extendedProps.carga
+
+      this._usuarioService
+      .getByDocuemnt(this.usuario.documento)
+      .subscribe({
+        next: (request) => {
+         let cargaFound = request.cargas.find((cargaObj:any)=>cargaObj.id == carga.id);
+         this.goToCargaDetail(cargaFound);
+
+        },
+        error: (e) => {
+          alert("No se encontro el usuario")
+          this.ready = false;
+        },
+      });
+
+    }
+   
+  }
+
+  goToCargaDetail(carga: any){
+    this._cargaAcademicaService.setCarga(carga);
+    this.router.navigate(["pages/administracion/carga-detail"]);
   }
 }
